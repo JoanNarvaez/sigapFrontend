@@ -1,0 +1,15 @@
+h1 {
+    font-family: 'Orbitron', sans-serif; // Puedes cambiar la fuente según tu preferencia
+    font-size: 3rem;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #4e54c8, #8f94fb); // Degradado de colores
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 20px 0;
+    padding: 10px;
+    // border-bottom: 3px solid #4e54c8; // Línea inferior para resaltar el título
+  }
+  

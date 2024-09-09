@@ -1,0 +1,102 @@
+<h2 classv="mb-5">
+    @if(afiliado){
+        Editar Afiliado
+    }@else{
+        Nuevo Afiliado
+    }
+
+</h2>
+
+<div class="row row-cols-3 justify-content-center">
+    @if(form){
+    <form [formGroup]="form" (submit)="save()">
+        <div class="mb-3">
+            <label for="tdocumento">T. DOCUMENTO</label>
+            <input id="tdocumento" type="text" placeholder="Tipo de Documento" class="form-control"
+                formControlName="tipo_documento">
+        </div>
+        <div class="mb-3">
+            <label for="nidentificacion">N. IDENTIFICACIÓN</label>
+            <input id="nidentificacion" type="text" placeholder="Número de Identificación" class="form-control"
+                formControlName="numero_identificacion">
+        </div>
+        <div class="mb-3">
+            <label for="primerapellido">PRIMER APELLIDO</label>
+            <input id="primerapellido" type="text" placeholder="Primer Apellido" class="form-control"
+                formControlName="primer_apellido">
+        </div>
+        <div class="mb-3">
+            <label for="segundoapellido">SEGUNDO APELLIDO</label>
+            <input id="segundoapellido" type="text" placeholder="Segundo Apellido" class="form-control"
+                formControlName="segundo_apellido">
+        </div>
+        <div class="mb-3">
+            <label for="primernombre">PRIMER NOMBRE</label>
+            <input id="primernombre" type="text" placeholder="Primer Nombre" class="form-control"
+                formControlName="primer_nombre">
+        </div>
+        <div class="mb-3">
+            <label for="segundonombre">SEGUNDO NOMBRE</label>
+            <input id="segundonombre" type="text" placeholder="Segundo Nombre" class="form-control"
+                formControlName="segundo_nombre">
+        </div>
+        <div class="mb-3">
+            <label for="fechanacimiento">FECHA NACIMIENTO</label>
+            <input id="fechanacimiento" type="date" class="form-control" formControlName="fecha_nacimiento">
+        </div>
+        <div class="mb-3">
+            <label for="genero">GÉNERO</label>
+            <select id="genero" class="form-control" formControlName="genero">
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="codigomunicipio">CÓDIGO MUNICIPIO</label>
+            <input id="codigomunicipio" type="text" placeholder="Código Municipio" class="form-control"
+                formControlName="codigo_municipio">
+        </div>
+        <div class="mb-3">
+            <label for="indicador">INDICADOR</label>
+            <input id="indicador" type="text" placeholder="Indicador" class="form-control" formControlName="indicador">
+        </div>
+        <div class="mb-3">
+            <label for="telefono">TELÉFONO</label>
+            <input id="telefono" type="tel" placeholder="Teléfono" class="form-control" formControlName="telefono">
+        </div>
+        <div class="mb-3">
+            <label for="direccion">DIRECCIÓN</label>
+            <input id="direccion" type="text" placeholder="Dirección" class="form-control" formControlName="direccion">
+        </div>
+        <div class="mb-3">
+            <label for="email">EMAIL</label>
+            <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+        </div>
+        <div class="mb-3">
+            <label for="fechaingreso">FECHA DE INGRESO</label>
+            <input id="fechaingreso" type="date" class="form-control" formControlName="fecha_ingreso">
+        </div>
+        <div class="mb-3">
+            <label for="fecharetiro">FECHA DE RETIRO</label>
+            <input id="fecharetiro" type="date" class="form-control" formControlName="fecha_retiro">
+        </div>
+
+        <div class="text-end">
+            <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+
+
+            <button class="btn btn-primary ms-2">
+                @if(afiliado){
+                Actualizar Afiliado
+                }@else{
+                Crear Afiliado
+                }
+
+
+            </button>
+        </div>
+
+    </form>
+    }
+
+</div>

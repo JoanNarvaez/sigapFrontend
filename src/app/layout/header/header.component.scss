@@ -1,0 +1,16 @@
+.project-header {
+  font-family: 'Arial', sans-serif; /* Fuente más formal */
+  font-size: 48px; /* Tamaño ajustado a un estilo más discreto */
+  color: #1E3A8A; /* Color azul oscuro */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3), /* Sombra sutil alrededor del texto */
+    -2px -2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil alrededor del texto */
+  margin: 20px 0; /* Ajuste de márgenes */
+  text-align: center; /* Centra el texto */
+  display: flex; /* Usado para centrar flexbox */
+  flex-direction: column; /* Centrado vertical */
+  align-items: center; /* Centrado horizontal */
+  width: 100%; /* El ancho ocupa todo el contenedor */
+  padding: 10px 0; /* Padding reducido */
+  border-bottom: 2px solid #E0E0E0; /* Línea inferior para un toque profesional */
+}
