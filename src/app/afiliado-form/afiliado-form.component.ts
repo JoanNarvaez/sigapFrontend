@@ -102,4 +102,32 @@ ngOnInit(): void {
     }
    
   }
+
+  // save() {
+  //   const afiliadoForm = this.form!.value;
+  //   if (this.afiliado) {
+  //       this.afiliadoService.update(this.afiliado.id, afiliadoForm)
+  //           .subscribe({
+  //               next: () => {
+  //                   console.log("Afiliado actualizado correctamente");
+  //               },
+  //               error: (err) => {
+  //                   console.error("Error actualizando afiliado: ", err);
+  //               }
+  //           });
+  //   } else {
+  //     this.afiliadoService.create(afiliadoForm)
+  //       .subscribe({
+  //         next: () => {
+  //           // Acción a realizar después de la creación, como notificar al usuario.
+  //         },
+  //         error: (err) => {
+  //           // Manejo del error
+  //         }
+  //       });
+  //   }
+  // }
+  
+
+
 }
