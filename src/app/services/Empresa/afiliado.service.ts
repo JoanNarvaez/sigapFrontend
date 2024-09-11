@@ -29,7 +29,7 @@ import { Afiliado } from "../../model/afiliado.interface";
         }
 
     delete(id: number){
-        return this.http.delete<void>(`http://localhost:8080/afiliado/consultar-por-id/${id}`);
+        return this.http.delete<void>(`http://localhost:8080/afiliado/eliminar/${id}`);
         // return this.http.delete<void>(`afiliado/consultar-por-id/${id}`)
             }
 

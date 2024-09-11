@@ -8,37 +8,41 @@ import {
   MatDialogTitle,
   MatDialogContent,
 } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import AfiliadoComponent from '../afiliado/afiliado.component';
 
 @Component({
   selector: 'app-lista-afiliados',
   standalone: true,
-  imports: [RouterModule,MatButtonModule],
+  imports: [RouterModule, MatButtonModule],
   templateUrl: './lista-afiliados.component.html',
-  styleUrl: './lista-afiliados.component.scss'
+  styleUrl: './lista-afiliados.component.scss',
 })
-export default class ListaAfiliadosComponent implements OnInit{
-private afiliadosService = inject(AfiliadoService);
-private dialog = inject(MatDialog);
-afiliados: Afiliado[] = [];
+export default class ListaAfiliadosComponent implements OnInit {
+  private afiliadosService = inject(AfiliadoService);
+  private dialog = inject(MatDialog);
 
-ngOnInit(): void {
-  this.afiliadosService.list()
-    .subscribe((afiliados) =>{
-      // console.log(afiliado);
-      this.afiliados=afiliados;
-    })
-  
+  afiliados: Afiliado[] = [];
+
+  ngOnInit(): void {
+    this.loadAll();
   }
-    openDialog(id:Afiliado) {
-      this.dialog.open(AfiliadoComponent, {
-        data: {id},
-      });
-    }
-   
 
+  openDialog(id: Afiliado) {
+    this.dialog.open(AfiliadoComponent, {
+      data: { id },
+    });
+  }
 
+  loadAll() {
+    this.afiliadosService.list().subscribe((afiliados) => {
+      this.afiliados = afiliados;
+    });
+  }
+
+  deleteAfiliado(afiliado: Afiliado) {
+    this.afiliadosService.delete(afiliado.id).subscribe(() => {
+      this.loadAll();
+    });
+  }
 }
-
-

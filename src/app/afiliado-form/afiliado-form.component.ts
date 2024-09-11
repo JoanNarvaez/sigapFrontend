@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { AfiliadoService } from '../services/Empresa/afiliado.service';
 import { Afiliado } from '../model/afiliado.interface';
 
@@ -14,9 +14,9 @@ import { Afiliado } from '../model/afiliado.interface';
 })
 export default class AfiliadoFormComponent implements OnInit{
   private fb = inject(FormBuilder);
-  // private router = inject(Router);
   private afiliadoService = inject(AfiliadoService);
   private route = inject(ActivatedRoute);
+  private router = inject(Router);
 
   // form = this.fb.group({
   //   tipo_documento: ['', Validators.required],
@@ -89,16 +89,19 @@ ngOnInit(): void {
 
   
 }
-
   
   save() {
     const afiliadoForm = this.form!.value;
     if (this.afiliado){
       this.afiliadoService.update(this.afiliado.id, afiliadoForm)
-      .subscribe(() => {});
+      .subscribe(() => {
+        this.router.navigate(['/']);   
+      });
     }else{
       this.afiliadoService.create(afiliadoForm)
-      .subscribe(() => {});
+      .subscribe(() => {
+        this.router.navigate(['/']);  
+      });
     }
    
   }
