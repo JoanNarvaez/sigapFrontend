@@ -1,102 +1,158 @@
 <h2 classv="mb-5">
     @if(afiliado){
-        Editar Afiliado
+    Editar Afiliado
     }@else{
-        Nuevo Afiliado
+    Nuevo Afiliado
     }
-
 </h2>
-
 <div class="row row-cols-3 justify-content-center">
     @if(form){
-    <form [formGroup]="form" (submit)="save()">
-        <div class="mb-3">
-            <label for="tdocumento">T. DOCUMENTO</label>
-            <input id="tdocumento" type="text" placeholder="Tipo de Documento" class="form-control"
-                formControlName="tipo_documento">
-        </div>
-        <div class="mb-3">
-            <label for="nidentificacion">N. IDENTIFICACIÓN</label>
-            <input id="nidentificacion" type="text" placeholder="Número de Identificación" class="form-control"
-                formControlName="numero_identificacion">
-        </div>
-        <div class="mb-3">
-            <label for="primerapellido">PRIMER APELLIDO</label>
-            <input id="primerapellido" type="text" placeholder="Primer Apellido" class="form-control"
-                formControlName="primer_apellido">
-        </div>
-        <div class="mb-3">
-            <label for="segundoapellido">SEGUNDO APELLIDO</label>
-            <input id="segundoapellido" type="text" placeholder="Segundo Apellido" class="form-control"
-                formControlName="segundo_apellido">
-        </div>
-        <div class="mb-3">
-            <label for="primernombre">PRIMER NOMBRE</label>
-            <input id="primernombre" type="text" placeholder="Primer Nombre" class="form-control"
-                formControlName="primer_nombre">
-        </div>
-        <div class="mb-3">
-            <label for="segundonombre">SEGUNDO NOMBRE</label>
-            <input id="segundonombre" type="text" placeholder="Segundo Nombre" class="form-control"
-                formControlName="segundo_nombre">
-        </div>
-        <div class="mb-3">
-            <label for="fechanacimiento">FECHA NACIMIENTO</label>
-            <input id="fechanacimiento" type="date" class="form-control" formControlName="fecha_nacimiento">
-        </div>
-        <div class="mb-3">
-            <label for="genero">GÉNERO</label>
-            <select id="genero" class="form-control" formControlName="genero">
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="codigomunicipio">CÓDIGO MUNICIPIO</label>
-            <input id="codigomunicipio" type="text" placeholder="Código Municipio" class="form-control"
-                formControlName="codigo_municipio">
-        </div>
-        <div class="mb-3">
-            <label for="indicador">INDICADOR</label>
-            <input id="indicador" type="text" placeholder="Indicador" class="form-control" formControlName="indicador">
-        </div>
-        <div class="mb-3">
-            <label for="telefono">TELÉFONO</label>
-            <input id="telefono" type="tel" placeholder="Teléfono" class="form-control" formControlName="telefono">
-        </div>
-        <div class="mb-3">
-            <label for="direccion">DIRECCIÓN</label>
-            <input id="direccion" type="text" placeholder="Dirección" class="form-control" formControlName="direccion">
-        </div>
-        <div class="mb-3">
-            <label for="email">EMAIL</label>
-            <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
-        </div>
-        <div class="mb-3">
-            <label for="fechaingreso">FECHA DE INGRESO</label>
-            <input id="fechaingreso" type="date" class="form-control" formControlName="fecha_ingreso">
-        </div>
-        <div class="mb-3">
-            <label for="fecharetiro">FECHA DE RETIRO</label>
-            <input id="fecharetiro" type="date" class="form-control" formControlName="fecha_retiro">
-        </div>
-
-        <div class="text-end">
-            <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
-
-
-            <button class="btn btn-primary ms-2">
-                @if(afiliado){
-                Actualizar Afiliado
-                }@else{
-                Crear Afiliado
+    <div>
+        @if(errors.length){
+        <div class="alert alert-danger">
+            <ul>
+                @for (error of errors; track error) {
+                <li>{{error}}</li>
                 }
-
-
-            </button>
+            </ul>
         </div>
+        }
+        <form [formGroup]="form" (submit)="save()">
+            <div class="mb-3">
+                <label for="tdocumento">T. DOCUMENTO</label>
+                <!-- <input id="tdocumento" type="text" placeholder="Tipo de Documento" class="form-control"
+                    formControlName="tipo_documento">
+                    -->
+                    <select id="tipo_documento" class="form-control" formControlName="tipo_documento">
+                        <option value="CC">Cédula de ciudadanía</option>
+                        <option value="CE">Cédula de extranjería</option>
+                        <option value="TI">Tarjeta de identidad</option>
+                        <option value="CD">Carnet diplomático</option>
+                        <option value="PA">Pasaporte</option>
+                    </select>
 
-    </form>
+
+                @if(form.get('tipo_documento')?.hasError('required') && form.get('tipo_documento')?.touched){
+                <p class="invalid-feedback d-block"> El Tipo de Documentos es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="nidentificacion">N. IDENTIFICACIÓN</label>
+                <input id="nidentificacion" type="text" placeholder="Número de Identificación" class="form-control"
+                    formControlName="numero_identificacion">
+                @if(form.get('numero_identificacion')?.hasError('required') &&
+                form.get('numero_identificacion')?.touched){
+                <p class="invalid-feedback d-block"> El Numero de Identificación es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="primerapellido">PRIMER APELLIDO</label>
+                <input id="primerapellido" type="text" placeholder="Primer Apellido" class="form-control"
+                    formControlName="primer_apellido">
+                @if(form.get('primer_apellido')?.hasError('required') && form.get('primer_apellido')?.touched){
+                <p class="invalid-feedback d-block"> El Primer Apellido es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="segundoapellido">SEGUNDO APELLIDO</label>
+                <input id="segundoapellido" type="text" placeholder="Segundo Apellido" class="form-control"
+                    formControlName="segundo_apellido">
+            </div>
+            <div class="mb-3">
+                <label for="primernombre">PRIMER NOMBRE</label>
+                <input id="primernombre" type="text" placeholder="Primer Nombre" class="form-control"
+                    formControlName="primer_nombre">
+                @if(form.get('primer_nombre')?.hasError('required') && form.get('primer_nombre')?.touched){
+                <p class="invalid-feedback d-block"> El Primer Nombre es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="segundonombre">SEGUNDO NOMBRE</label>
+                <input id="segundonombre" type="text" placeholder="Segundo Nombre" class="form-control"
+                    formControlName="segundo_nombre">
+            </div>
+            <div class="mb-3">
+                <label for="fechanacimiento">FECHA NACIMIENTO</label>
+                <input id="fechanacimiento" type="date" class="form-control" formControlName="fecha_nacimiento">
+                @if(form.get('fecha_nacimiento')?.hasError('required') && form.get('fecha_nacimiento')?.touched){
+                <p class="invalid-feedback d-block"> La Fecha de Nacimiento es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="genero">GÉNERO</label>
+                <select id="genero" class="form-control" formControlName="genero">
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+                @if(form.get('genero')?.hasError('required') && form.get('genero')?.touched){
+                <p class="invalid-feedback d-block"> Este Campo es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="codigomunicipio">CÓDIGO MUNICIPIO</label>
+                <input id="codigomunicipio" type="text" placeholder="Código Municipio" class="form-control"
+                    formControlName="codigo_municipio">
+                @if(form.get('codigo_municipio')?.hasError('required') && form.get('codigo_municipio')?.touched){
+                <p class="invalid-feedback d-block"> El Código del Municipio es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="indicador">INDICADOR</label>
+                <input id="indicador" type="text" placeholder="Indicador" class="form-control"
+                    formControlName="indicador">
+                @if(form.get('indicador')?.hasError('required') && form.get('indicador')?.touched){
+                <p class="invalid-feedback d-block"> Este Campo es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="telefono">TELÉFONO</label>
+                <input id="telefono" type="tel" placeholder="Teléfono" class="form-control" formControlName="telefono">
+                @if(form.get('telefono')?.hasError('required') && form.get('telefono')?.touched){
+                <p class="invalid-feedback d-block"> El Teléfono es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="direccion">DIRECCIÓN</label>
+                <input id="direccion" type="text" placeholder="Dirección" class="form-control"
+                    formControlName="direccion">
+                @if(form.get('direccion')?.hasError('required') && form.get('direccion')?.touched){
+                <p class="invalid-feedback d-block"> La Dirección es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="email">EMAIL</label>
+                <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+
+                <!-- @if(form.get('email')?.hasError('required')){
+                <p class ="invalid-feedback d-block"> El Email es Obligatorio</p>
+            } -->
+                <!-- 
+            @if(form.get('email')?.hasError('email')&& form.get('email')?.touched){
+                <p class ="invalid-feedback d-block"> El Email es Invalido</p>
+            } -->
+            </div>
+            <div class="mb-3">
+                <label for="fechaingreso">FECHA DE INGRESO</label>
+                <input id="fechaingreso" type="date" class="form-control" formControlName="fecha_ingreso">
+                @if(form.get('fecha_ingreso')?.hasError('required') && form.get('fecha_ingreso')?.touched){
+                <p class="invalid-feedback d-block"> La Fecha de Ingreso es Obligatorio</p>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="fecharetiro">FECHA DE RETIRO</label>
+                <input id="fecharetiro" type="date" class="form-control" formControlName="fecha_retiro">
+            </div>
+            <div class="text-end">
+                <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+                <button class="btn btn-primary ms-2">
+                    @if(afiliado){
+                    Actualizar Afiliado
+                    }@else{
+                    Crear Afiliado
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
     }
-
 </div>

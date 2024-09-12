@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Empresa } from '../../empresa';
 
@@ -37,19 +37,18 @@ export class EmpresaService {
 //     return this.httpClient.delete(`${this.baseURL}/eliminar/${id}`);
 //   }
 // }
-private apiUrl = 'http://localhost:8080/empresa'; // Ajusta esto a la URL de tu backend
+private http =inject(HttpClient);
 
-constructor(private http: HttpClient) { }
 
-obtenerEmpresa(): Observable<any> {
-  return this.http.get(`${this.apiUrl}/consultar-por-id/1`); // Asumimos que la única empresa siempre tendrá ID 1
+
+create(afiliado: Empresa){
+return this.http.post<Empresa>('http://localhost:8080/empresa/registrar',afiliado);
+// return this.http.post<Afiliado>('afiliado/registrar',afiliado)
 }
 
-guardarEmpresa(empresa: any): Observable<any> {
-  if (empresa.id) {
-    return this.http.put(`${this.apiUrl}/actualizar`, empresa);
-  } else {
-    return this.http.post(`${this.apiUrl}/registrar`, empresa);
-  }
-}
+update(id: number, afiliado: Empresa){
+    return this.http.put<Empresa>(`http://localhost:8080/empresa/actualizar/${id}`,afiliado);
+    // return this.http.put<Afiliado>(`afiliado/consultar-por-id/${id}`,afiliado)
+    }
+
 }

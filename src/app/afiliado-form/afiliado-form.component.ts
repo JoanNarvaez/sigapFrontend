@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { AfiliadoService } from '../services/Empresa/afiliado.service';
 import { Afiliado } from '../model/afiliado.interface';
+import { response } from 'express';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -38,6 +40,7 @@ export default class AfiliadoFormComponent implements OnInit{
 
   form?: FormGroup;
   afiliado?: Afiliado;
+  errors: string[] =[];
 
 ngOnInit(): void {
   const id = this.route.snapshot.paramMap.get('id');
@@ -61,6 +64,7 @@ ngOnInit(): void {
     telefono: [afiliado.telefono, Validators.required],
     direccion: [afiliado.direccion, Validators.required],
     email: [afiliado.email], // No se requiere validator
+    // email: [afiliado.email,Validators.email],
     fecha_ingreso: [afiliado.fecha_ingreso, Validators.required],
     fecha_retiro: [afiliado.fecha_retiro], // No se requiere validator
   });
@@ -80,7 +84,8 @@ ngOnInit(): void {
         indicador: ['', Validators.required],
         telefono: ['', Validators.required],
         direccion: ['', Validators.required],
-        email: [''], // No se requiere validator
+        // email: ['',Validators.required, Validators.email],
+        email: ['', Validators.email],// No se requiere validator
         fecha_ingreso: ['', Validators.required],
         fecha_retiro: [''], // No se requiere validator
       });
@@ -90,21 +95,106 @@ ngOnInit(): void {
   
 }
   
+  // save() {
+  //   const afiliadoForm = this.form!.value;
+  //   // let request:Observable<Afiliado>;
+  //   if (this.afiliado){
+  //     this.afiliadoService.update(this.afiliado.id, afiliadoForm)
+  //     .subscribe({
+  //       next:() =>{
+  //         this.errors = [];
+  //         this.router.navigate(['/']);  
+  //                },
+  //       error: response => {
+  //         console.log('response',response.error)
+  //         this.errors =response.error;
+  //       }
+  //     });
+  //   }else{
+  //     this.afiliadoService.create(afiliadoForm)
+  //     .subscribe({
+  //       next:() =>{
+  //         this.errors = [];
+  //         this.router.navigate(['/']);  
+  //                },
+  //       error: response => {
+  //         console.log('response',response.error)
+  //         this.errors =response.error;
+  //       }
+  //     });
+    
+  // save() {
+  //   this.form?.markAllAsTouched();
+  //   const afiliadoForm = this.form!.value;
+  
+  //   if (this.afiliado) {
+  //     this.afiliadoService.update(this.afiliado.id, afiliadoForm)
+  //       .subscribe({
+  //         next: () => {
+  //           this.errors = [];
+  //           this.router.navigate(['/']);
+  //         },
+  //         error: response => {
+  //           console.log('response', response.error);
+  //           this.errors = Array.isArray(response.error) ? response.error : [response.error];
+  //         }
+  //       });
+  //   } else {
+  //     this.afiliadoService.create(afiliadoForm)
+  //       .subscribe({
+  //         next: () => {
+  //           this.errors = [];
+  //           this.router.navigate(['/']);
+  //         },
+  //         error: response => {
+  //           console.log('response', response.error);
+  //           this.errors = Array.isArray(response.error) ? response.error : [response.error];
+  //         }
+  //       });
+  //   }
+  // }
+  
   save() {
+    this.form?.markAllAsTouched();
     const afiliadoForm = this.form!.value;
-    if (this.afiliado){
+
+    if (this.afiliado) {
       this.afiliadoService.update(this.afiliado.id, afiliadoForm)
-      .subscribe(() => {
-        this.router.navigate(['/']);   
-      });
-    }else{
+        .subscribe({
+          next: () => {
+            this.errors = [];
+            this.router.navigate(['/']);
+          },
+          error: response => {
+            console.log('response', response.error);
+            this.errors = Array.isArray(response.error) ? response.error : [response.error];
+          }
+        });
+    } else {
       this.afiliadoService.create(afiliadoForm)
-      .subscribe(() => {
-        this.router.navigate(['/']);  
-      });
+        .subscribe({
+          next: () => {
+            this.errors = [];
+            this.router.navigate(['/']);
+          },
+          error: response => {
+            console.log('response', response.error);
+            this.errors = Array.isArray(response.error) ? response.error : [response.error];
+          }
+        });
     }
-   
   }
+}
+
+
+
+      // ) => {
+      //   this.router.navigate(['/']);  
+      //   this.errors=[];
+      // });
+    
+   
+  //}
 
   // save() {
   //   const afiliadoForm = this.form!.value;
@@ -131,6 +221,6 @@ ngOnInit(): void {
   //   }
   // }
   
+  
 
 
-}
