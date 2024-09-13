@@ -1,53 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Empresa } from '../../empresa';
+import { Empresa } from '../../model/empresa.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresaService {
 
-//   private baseURL = "http://localhost:8080/empresa";
-
-//   constructor(private httpClient: HttpClient) { }
-
-//   // Obtener lista de empresas
-//   obtenerListaDeEmpresas(): Observable<Empresa[]> {
-//     return this.httpClient.get<Empresa[]>(`${this.baseURL}/consultar-todos`);
-//   }
-
-//   // Registrar empresa
-//   registrarEmpresa(empresa: Empresa): Observable<Object> {
-//     return this.httpClient.post(`${this.baseURL}/registrar`, empresa);
-//   }
-
-//   // Actualizar empresa
-//   actualizarEmpresa(id: number, empresa: Empresa): Observable<Object> {
-//     return this.httpClient.put(`${this.baseURL}/actualizar/${id}`, empresa);
-//   }
-
-//   // Obtener empresa por ID
-//   obtenerEmpresaPorId(id: number): Observable<Empresa> {
-//     return this.httpClient.get<Empresa>(`${this.baseURL}/consultar-por-id/${id}`);
-//   }
-
-//   // Eliminar empresa
-//   eliminarEmpresa(id: number): Observable<Object> {
-//     return this.httpClient.delete(`${this.baseURL}/eliminar/${id}`);
-//   }
-// }
 private http =inject(HttpClient);
 
+get(id:number){
+  return this.http.get<Empresa>(`http://localhost:8080/empresa/consultar-por-id/${id}`);
+  // return this.http.get<Afiliado>(`afiliado/consultar-por-id/${id}`);
+}
 
-
-create(afiliado: Empresa){
-return this.http.post<Empresa>('http://localhost:8080/empresa/registrar',afiliado);
+create(empresa: Empresa){
+return this.http.post<Empresa>('http://localhost:8080/empresa/registrar',empresa);
 // return this.http.post<Afiliado>('afiliado/registrar',afiliado)
 }
 
-update(id: number, afiliado: Empresa){
-    return this.http.put<Empresa>(`http://localhost:8080/empresa/actualizar/${id}`,afiliado);
+update(id: number, empresa: Empresa){
+    return this.http.put<Empresa>(`http://localhost:8080/empresa/actualizar/${id}`,empresa);
     // return this.http.put<Afiliado>(`afiliado/consultar-por-id/${id}`,afiliado)
     }
 

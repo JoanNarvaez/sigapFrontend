@@ -1,1 +1,182 @@
-<p>empresa works!</p>
+<h2 classv="mb-5">
+    @if(empresa){
+    Editar Empresa
+    }@else{
+    Nuevo Empresa
+    }
+</h2>
+<div class="row row-cols-3 justify-content-center">
+    @if(form){
+    <div>
+        @if(errors.length){
+        <div class="alert alert-danger">
+            <ul>
+                @for (error of errors; track error) {
+                <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+        }
+
+        <form [formGroup]="form" (submit)="save()">
+            <div class="mb-3">
+                <label for="tipo_identificacion">T. IDENTIFICACIÓN</label>
+                <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion">
+                    <option value="NI">NIT</option>
+                    <option value="CC">Cédula de ciudadanía</option>
+                    <option value="CE">Cédula de extranjería</option>
+                </select>
+                @if(form.get('tipo_identificacion')?.hasError('required') && form.get('tipo_identificacion')?.touched){
+                <p class="invalid-feedback d-block"> Este Campo es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="razon_social">RAZÓN SOCIAL</label>
+                <input id="razon_social" type="text" placeholder="Razón Social" class="form-control"
+                    formControlName="razon_social">
+                @if(form.get('razon_social')?.hasError('required') && form.get('razon_social')?.touched){
+                <p class="invalid-feedback d-block"> La Razón Social es Obligatoria</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="numero_nit">NÚMERO NIT</label>
+                <input id="numero_nit" type="text" placeholder="Número NIT" class="form-control"
+                    formControlName="numero_nit">
+                @if(form.get('numero_nit')?.hasError('required') && form.get('numero_nit')?.touched){
+                <p class="invalid-feedback d-block"> El Número NIT es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="digito_verificacion">DÍGITO DE VERIFICACIÓN</label>
+                <input id="digito_verificacion" type="text" placeholder="Dígito de Verificación" class="form-control"
+                    formControlName="digito_verificacion">
+                @if(form.get('digito_verificacion')?.hasError('required') && form.get('digito_verificacion')?.touched){
+                <p class="invalid-feedback d-block"> El Dígito de Verificación es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="tipo_entidad">TIPO DE ENTIDAD</label>
+                <input id="tipo_entidad" type="number" placeholder="Tipo de Entidad" class="form-control"
+                    formControlName="tipo_entidad">
+                @if(form.get('tipo_entidad')?.hasError('required') && form.get('tipo_entidad')?.touched){
+                <p class="invalid-feedback d-block"> El Tipo de Entidad es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
+                <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
+                    formControlName="codigo_municipio">
+                @if(form.get('codigo_municipio')?.hasError('required') && form.get('codigo_municipio')?.touched){
+                <p class="invalid-feedback d-block"> El Código del Municipio es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="actividad_economica">ACTIVIDAD ECONÓMICA</label>
+                <input id="actividad_economica" type="number" placeholder="Actividad Económica" class="form-control"
+                    formControlName="actividad_economica">
+                @if(form.get('actividad_economica')?.hasError('required') && form.get('actividad_economica')?.touched){
+                <p class="invalid-feedback d-block"> La Actividad Económica es Obligatoria</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="telefono">TELÉFONO</label>
+                <input id="telefono" type="tel" placeholder="Teléfono" class="form-control" formControlName="telefono">
+                @if(form.get('telefono')?.hasError('required') && form.get('telefono')?.touched){
+                <p class="invalid-feedback d-block"> El Teléfono es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="direccion">DIRECCIÓN</label>
+                <input id="direccion" type="text" placeholder="Dirección" class="form-control"
+                    formControlName="direccion">
+                @if(form.get('direccion')?.hasError('required') && form.get('direccion')?.touched){
+                <p class="invalid-feedback d-block"> La Dirección es Obligatoria</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="email">EMAIL</label>
+                <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+                @if(form.get('email')?.hasError('required') && form.get('email')?.touched){
+                <p class="invalid-feedback d-block"> El Email es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="valor_activo">VALOR ACTIVO</label>
+                <input id="valor_activo" type="number" placeholder="Valor Activo" class="form-control"
+                    formControlName="valor_activo">
+                @if(form.get('valor_activo')?.hasError('required') && form.get('valor_activo')?.touched){
+                <p class="invalid-feedback d-block"> El Valor Activo es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="valor_pasivo">VALOR PASIVO</label>
+                <input id="valor_pasivo" type="number" placeholder="Valor Pasivo" class="form-control"
+                    formControlName="valor_pasivo">
+                @if(form.get('valor_pasivo')?.hasError('required') && form.get('valor_pasivo')?.touched){
+                <p class="invalid-feedback d-block"> El Valor Pasivo es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="valor_patrimonio">VALOR PATRIMONIO</label>
+                <input id="valor_patrimonio" type="number" placeholder="Valor Patrimonio" class="form-control"
+                    formControlName="valor_patrimonio">
+                @if(form.get('valor_patrimonio')?.hasError('required') && form.get('valor_patrimonio')?.touched){
+                <p class="invalid-feedback d-block"> El Valor del Patrimonio es Obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="valor_patrimonio_sin_re">VALOR PATRIMONIO SIN RESERVA</label>
+                <input id="valor_patrimonio_sin_re" type="number" placeholder="Valor Patrimonio Sin Reserva"
+                    class="form-control" formControlName="valor_patrimonio_sin_re">
+                    @if(form.get('valor_patrimonio_sin_re')?.hasError('required') && form.get('valor_patrimonio_sin_re')?.touched){
+                        <p class="invalid-feedback d-block"> El Valor del Patrimonio es Obligatorio</p>
+                        }
+            </div>
+
+            <div class="mb-3">
+                <label for="valor_reserva_especial">VALOR RESERVA ESPECIAL</label>
+                <input id="valor_reserva_especial" type="number" placeholder="Valor Reserva Especial"
+                    class="form-control" formControlName="valor_reserva_especial">
+                    @if(form.get('valor_reserva_especial')?.hasError('required') && form.get('valor_reserva_especial')?.touched){
+                        <p class="invalid-feedback d-block"> El Valor del Patrimonio es Obligatorio</p>
+                        }
+            </div>
+
+            <div class="mb-3">
+                <label for="codigo_Contable">CÓDIGO CONTABLE</label>
+                <input id="codigo_Contable" type="number" placeholder="Código Contable" class="form-control"
+                    formControlName="codigo_Contable">
+                    @if(form.get('codigo_Contable')?.hasError('required') && form.get('codigo_Contable')?.touched){
+                        <p class="invalid-feedback d-block"> El Valor del Patrimonio es Obligatorio</p>
+                        }
+            </div>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+                <!-- <button class="btn btn-primary" [routerLink]="['/empresa', empresa?.id, 'editar']">Editar</button> -->
+                <button class="btn btn-primary ms-2">
+                    @if(empresa){
+                    Actualizar Empresa
+                    }@else{
+                    Crear Empresa
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+    }
+</div>
+

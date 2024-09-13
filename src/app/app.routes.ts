@@ -13,6 +13,9 @@ export const routes: Routes = [
   },
   { path: 'afiliados/:id/editar', 
     loadComponent: ()=> import('./afiliado-form/afiliado-form.component')
+  },
+  { path: 'empresa/:id/editar', 
+    loadComponent: ()=> import('./empresa/empresa.component')
   }
   
 ];

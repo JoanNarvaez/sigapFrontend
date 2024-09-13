@@ -40,6 +40,7 @@
                 <label for="nidentificacion">N. IDENTIFICACIÓN</label>
                 <input id="nidentificacion" type="text" placeholder="Número de Identificación" class="form-control"
                     formControlName="numero_identificacion">
+                    
                 @if(form.get('numero_identificacion')?.hasError('required') &&
                 form.get('numero_identificacion')?.touched){
                 <p class="invalid-feedback d-block"> El Numero de Identificación es Obligatorio</p>

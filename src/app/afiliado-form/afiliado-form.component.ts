@@ -3,8 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { AfiliadoService } from '../services/Empresa/afiliado.service';
 import { Afiliado } from '../model/afiliado.interface';
-import { response } from 'express';
-import { Observable } from 'rxjs';
+
 
 
 @Component({
