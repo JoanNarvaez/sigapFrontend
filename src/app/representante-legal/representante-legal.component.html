@@ -1,0 +1,123 @@
+<h2 class="mb-5">
+    @if(representantelegal){
+    Editar Representante Legal
+    }@else{
+    Nueva Representante Legal
+    }
+</h2>
+<div class="row row-cols-3 justify-content-center">
+    @if(form){
+    <div>
+        @if(errors.length){
+        <div class="alert alert-danger">
+            <ul>
+                @for (error of errors; track error) {
+                <li>{{error}}</li>
+                }
+            </ul>
+        </div>
+        }
+
+        <form [formGroup]="form" (submit)="save()">
+            <div class="mb-3">
+                <label for="tipo_identificacion">T. IDENTIFICACIÓN</label>
+                <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion">
+                    <option value="NI">NIT</option>
+                    <option value="CC">Cédula de ciudadanía</option>
+                    <option value="CE">Cédula de extranjería</option>
+                </select>
+                @if(form.get('tipo_identificacion')?.hasError('required') && form.get('tipo_identificacion')?.touched){
+                <p class="invalid-feedback d-block"> Este campo es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="numero_identificacion">NÚMERO DE IDENTIFICACIÓN</label>
+                <input id="numero_identificacion" type="text" placeholder="Número de Identificación" class="form-control"
+                    formControlName="numero_identificacion">
+                @if(form.get('numero_identificacion')?.hasError('required') && form.get('numero_identificacion')?.touched){
+                <p class="invalid-feedback d-block"> El Número de Identificación es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="primer_apellido">PRIMER APELLIDO</label>
+                <input id="primer_apellido" type="text" placeholder="Primer Apellido" class="form-control"
+                    formControlName="primer_apellido">
+                @if(form.get('primer_apellido')?.hasError('required') && form.get('primer_apellido')?.touched){
+                <p class="invalid-feedback d-block"> El Primer Apellido es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="segundo_apellido">SEGUNDO APELLIDO</label>
+                <input id="segundo_apellido" type="text" placeholder="Segundo Apellido" class="form-control"
+                    formControlName="segundo_apellido">
+                @if(form.get('segundo_apellido')?.hasError('required') && form.get('segundo_apellido')?.touched){
+                <p class="invalid-feedback d-block"> El Segundo Apellido es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="primer_nombre">PRIMER NOMBRE</label>
+                <input id="primer_nombre" type="text" placeholder="Primer Nombre" class="form-control"
+                    formControlName="primer_nombre">
+                @if(form.get('primer_nombre')?.hasError('required') && form.get('primer_nombre')?.touched){
+                <p class="invalid-feedback d-block"> El Primer Nombre es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="segundo_nombre">SEGUNDO NOMBRE</label>
+                <input id="segundo_nombre" type="text" placeholder="Segundo Nombre" class="form-control"
+                    formControlName="segundo_nombre">
+            </div>
+
+            <div class="mb-3">
+                <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
+                <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
+                    formControlName="codigo_municipio">
+                @if(form.get('codigo_municipio')?.hasError('required') && form.get('codigo_municipio')?.touched){
+                <p class="invalid-feedback d-block"> El Código del Municipio es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="telefono">TELÉFONO</label>
+                <input id="telefono" type="tel" placeholder="Teléfono" class="form-control" formControlName="telefono">
+                @if(form.get('telefono')?.hasError('required') && form.get('telefono')?.touched){
+                <p class="invalid-feedback d-block"> El Teléfono es obligatorio</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="direccion">DIRECCIÓN</label>
+                <input id="direccion" type="text" placeholder="Dirección" class="form-control"
+                    formControlName="direccion">
+                @if(form.get('direccion')?.hasError('required') && form.get('direccion')?.touched){
+                <p class="invalid-feedback d-block"> La Dirección es obligatoria</p>
+                }
+            </div>
+
+            <div class="mb-3">
+                <label for="email">EMAIL</label>
+                <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+                @if(form.get('email')?.hasError('required') && form.get('email')?.touched){
+                <p class="invalid-feedback d-block"> El Email es obligatorio</p>
+                }
+            </div>
+
+            <div class="text-end">
+                <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+                <button class="btn btn-primary ms-2">
+                    @if(representantelegal){
+                    Actualizar Representante Legal
+                    }@else{
+                    Crear Representante Legal
+                    }
+                </button>
+            </div>
+        </form>
+    </div>
+    }
+</div>

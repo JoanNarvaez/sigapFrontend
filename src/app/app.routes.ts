@@ -16,7 +16,11 @@ export const routes: Routes = [
   },
   { path: 'empresa/:id/editar', 
     loadComponent: ()=> import('./empresa/empresa.component')
+  },
+  { path: 'representante-legal/:id/editar', 
+    loadComponent: ()=> import('./representante-legal/representante-legal.component')
   }
+  
   
 ];
 
