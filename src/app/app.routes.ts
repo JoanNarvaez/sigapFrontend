@@ -19,6 +19,9 @@ export const routes: Routes = [
   },
   { path: 'representante-legal/:id/editar', 
     loadComponent: ()=> import('./representante-legal/representante-legal.component')
+  },
+  { path: 'reserva-especial/:id/editar', 
+    loadComponent: ()=> import('./reserva-especial/reserva-especial.component')
   }
   
   

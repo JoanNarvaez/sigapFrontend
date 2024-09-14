@@ -11,7 +11,7 @@ import { RepresentanteLegal } from '../model/representanteLegal';
   templateUrl: './representante-legal.component.html',
   styleUrl: './representante-legal.component.scss'
 })
-export default class  RepresentanteLegalComponent implements OnInit {
+export default class RepresentanteLegalComponent implements OnInit {
 
   private fb = inject(FormBuilder);
   private representanteLegalService = inject(RepresentanteLegalService);
