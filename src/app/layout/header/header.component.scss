@@ -1,23 +1,52 @@
-.project-header {
-  font-family: 'Arial', sans-serif; /* Fuente más formal */
-  font-size: 48px; /* Tamaño ajustado a un estilo más discreto */
-  color: #1E3A8A; /* Color azul oscuro */
-  text-shadow: 
-    2px 2px 4px rgba(0, 0, 0, 0.3), /* Sombra sutil alrededor del texto */
-    -2px -2px 4px rgba(0, 0, 0, 0.3); /* Sombra sutil alrededor del texto */
-  margin: 20px 0; /* Ajuste de márgenes */
-  text-align: center; /* Centra el texto */
-  display: flex; /* Usado para centrar flexbox */
-  flex-direction: column; /* Centrado vertical */
-  align-items: center; /* Centrado horizontal */
-  width: 100%; /* El ancho ocupa todo el contenedor */
-  padding: 10px 0; /* Padding reducido */
-  border-bottom: 2px solid #E0E0E0; /* Línea inferior para un toque profesional */
-}
-body {
-  padding-bottom: 20px;
+.overlay {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 30vh;
+	z-index: 100;
+
+	background: rgb(255, 255, 255);
+	background: linear-gradient(
+		0deg,
+		rgba(255, 255, 255, 1) 75%,
+		rgba(255, 255, 255, 0.9) 80%,
+		rgba(255, 255, 255, 0.25) 95%,
+		rgba(255, 255, 255, 0) 100%
+	);
 }
 
-.navbar {
-  margin-bottom: 20px;
+.text {
+	font-family: "Yanone Kaffeesatz";
+	font-size: 50px;
+	 display: flex;
+ position: left;
+	bottom: 20vh;
+	left: 50%;
+	transform: translateX(-50%);
+	user-select: none;
+
+	.wrapper {
+		padding-left: 10px;
+		padding-right: 10px;
+		padding-top: 10px;
+		.letter {
+			transition: ease-out 1s;
+			transform: translateY(10%);
+		}
+		.shadow {
+			transform: scale(1, -1);
+			color: #cacaca;
+			transition: ease-in 5s, ease-out 5s;
+		}
+		&:hover {
+			.letter {
+				transform: translateY(-100%);
+			}
+			.shadow {
+				opacity: 0;
+				transform: translateY(100%);
+			}
+		}
+	}
 }

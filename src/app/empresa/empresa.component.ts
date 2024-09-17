@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { EmpresaService } from '../services/Empresa/empresa.service';
 import { ActivatedRoute, Router, RouterModule  } from '@angular/router';
 import { Empresa } from '../model/empresa.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 
@@ -33,43 +34,43 @@ ngOnInit(): void {
       this.empresa = empresa;
       this.form =this.fb.group({
         id:[empresa.id],
-        tipo_identificacion: [empresa.tipo_identificacion, Validators.required],
-    razon_social: [empresa.razon_social, Validators.required],
-    numero_nit: [empresa.numero_nit, Validators.required],
-    digito_verificacion: [empresa.digito_verificacion, Validators.required],
-    tipo_entidad: [empresa.tipo_entidad, Validators.required],
-    codigo_municipio: [empresa.codigo_municipio, Validators.required],
-    actividad_economica: [empresa.actividad_economica, Validators.required],
-    telefono: [empresa.telefono, Validators.required],
-    direccion: [empresa.direccion, Validators.required],
-    email: [empresa.email, [Validators.required, Validators.email]],
-    valor_activo: [empresa.valor_activo, Validators.required],
-    valor_pasivo: [empresa.valor_pasivo, Validators.required],
-    valor_patrimonio: [empresa.valor_patrimonio, Validators.required],
-    valor_patrimonio_sin_re: [empresa.valor_patrimonio_sin_re,Validators.required],
-    valor_reserva_especial: [empresa.valor_reserva_especial,Validators.required],
-    codigo_Contable: [empresa.codigo_Contable,Validators.required], 
+        tipo_identificacion: [empresa.tipo_identificacion, [Validators.required,Validators.maxLength(2)]],
+    razon_social: [empresa.razon_social, [Validators.required,Validators.maxLength(200)]],
+    numero_nit: [empresa.numero_nit, [Validators.required,Validators.maxLength(12),Validators.pattern(/^[0-9]+$/)]],
+    digito_verificacion: [empresa.digito_verificacion, [Validators.required,Validators.maxLength(1),Validators.pattern(/^[0-9]+$/)]],
+    tipo_entidad: [empresa.tipo_entidad, [Validators.required,Validators.maxLength(1)]],
+    codigo_municipio: [empresa.codigo_municipio, [Validators.required,Validators.maxLength(5)]],
+    actividad_economica: [empresa.actividad_economica, [Validators.required,Validators.maxLength(4),Validators.pattern(/^[0-9]+$/)]],
+    telefono: [empresa.telefono, [Validators.required,Validators.maxLength(22)]],
+    direccion: [empresa.direccion, [Validators.required,Validators.maxLength(200)]],
+    email: [empresa.email, [Validators.required, Validators.email,Validators.maxLength(101)]],
+    valor_activo: [empresa.valor_activo, [Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_pasivo: [empresa.valor_pasivo, [Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_patrimonio: [empresa.valor_patrimonio, [Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_patrimonio_sin_re: [empresa.valor_patrimonio_sin_re,[Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_reserva_especial: [empresa.valor_reserva_especial,[Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    codigo_Contable: [empresa.codigo_Contable,[Validators.required,Validators.maxLength(8),Validators.pattern(/^[0-9]+$/)]],
   });
 
 })
 }else{
   this.form = this.fb.group({
-    tipo_identificacion: ['', Validators.required],
-    razon_social: ['', Validators.required],
-    numero_nit: ['', Validators.required],
-    digito_verificacion: ['', Validators.required],
-    tipo_entidad: ['', Validators.required],
-    codigo_municipio: ['', Validators.required],
-    actividad_economica: ['', Validators.required],
-    telefono: ['', Validators.required],
-    direccion: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    valor_activo: ['', Validators.required],
-    valor_pasivo: ['', Validators.required],
-    valor_patrimonio: ['', Validators.required],
-    valor_patrimonio_sin_re: ['',Validators.required],
-    valor_reserva_especial: ['',Validators.required],
-    codigo_Contable: ['',Validators.required], 
+    tipo_identificacion: ['', [Validators.required,Validators.maxLength(2)]],
+    razon_social: ['', [Validators.required,Validators.maxLength(200)]],
+    numero_nit: ['', [Validators.required,Validators.maxLength(12),Validators.pattern(/^[0-9]+$/)]],
+    digito_verificacion: ['', [Validators.required,Validators.maxLength(1),Validators.pattern(/^[0-9]+$/)]],
+    tipo_entidad: ['', [Validators.required,Validators.maxLength(1)]],
+    codigo_municipio: ['', [Validators.required,Validators.maxLength(5)]],
+    actividad_economica: ['', [Validators.required,Validators.maxLength(4),Validators.pattern(/^[0-9]+$/)]],
+    telefono: ['', [Validators.required,Validators.maxLength(22)]],
+    direccion: ['', [Validators.required,Validators.maxLength(200)]],
+    email: ['', [Validators.required, Validators.email,Validators.maxLength(101)]],
+    valor_activo: ['', [Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_pasivo: ['', [Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_patrimonio: ['', [Validators.required,Validators.maxLength,Validators.pattern(/^[0-9]+$/)]],
+    valor_patrimonio_sin_re: ['',[Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    valor_reserva_especial: ['',[Validators.required,Validators.maxLength(20),Validators.pattern(/^[0-9]+$/)]],
+    codigo_Contable: ['',[Validators.required,Validators.maxLength(8),Validators.pattern(/^[0-9]+$/)]],
   });
     
 }
@@ -88,7 +89,7 @@ ngOnInit(): void {
             this.router.navigate(['/']);
           },
           error: response => {
-            // console.log('response', response.error);
+            console.log('response', response.error);
             this.errors = Array.isArray(response.error) ? response.error : [response.error];
           }
         });
@@ -106,4 +107,11 @@ ngOnInit(): void {
         });
     }
   }
-}
+
+ 
+
+
+  }
+
+
+
