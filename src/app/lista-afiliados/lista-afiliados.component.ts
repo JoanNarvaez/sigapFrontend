@@ -23,20 +23,30 @@ export default class ListaAfiliadosComponent implements OnInit {
   private dialog = inject(MatDialog);
 
   afiliados: Afiliado[] = [];
+  pageSize: number = 8;
+  currentPage: number = 1;
+  totalPages: number = 1;
 
   ngOnInit(): void {
     this.loadAll();
   }
 
-  openDialog(id: Afiliado) {
+  // openDialog(id: Afiliado) {
+  //   this.dialog.open(AfiliadoComponent, {
+  //     data: { id },
+  //   });
+  // }
+  openDialog(afiliado: Afiliado) {
     this.dialog.open(AfiliadoComponent, {
-      data: { id },
+      data: { afiliado: afiliado },
+      width: '500px'
     });
   }
 
   loadAll() {
     this.afiliadosService.list().subscribe((afiliados) => {
       this.afiliados = afiliados;
+      this.totalPages = Math.ceil(this.afiliados.length / this.pageSize);
     });
   }
 
@@ -44,5 +54,27 @@ export default class ListaAfiliadosComponent implements OnInit {
     this.afiliadosService.delete(afiliado.id).subscribe(() => {
       this.loadAll();
     });
+  }
+  get paginatedAfiliados() {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.afiliados.slice(startIndex, startIndex + this.pageSize);
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  goToPage(page: number) {
+    if (page >= 1 && page <= this.totalPages) {
+      this.currentPage = page;
+    }
   }
 }

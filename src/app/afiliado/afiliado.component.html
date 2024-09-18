@@ -1,116 +1,43 @@
-<!-- <h2 mat-dialog-title>Afiliado</h2>
+
+<h2 mat-dialog-title>Detalles del Afiliado</h2>
 <mat-dialog-content>
-@if(afiliado) {
-    <div class="afiliado-card-container">
-      <div class="afiliado-card">
-  
-
-        <h2>ID:</h2>
-        <p>{{ afiliado?.id || 'ID no disponible' }}</p>
-  
-   
-        <h2>Tipo de Documento:</h2>
-        <p>{{ afiliado?.tipo_documento || 'Tipo de documento no disponible' }}</p>
-  
-  
-        <h2>Número de Identificación:</h2>
-        <p>{{ afiliado?.numero_identificacion || 'Número de identificación no disponible' }}</p>
-  
-
-        <h2>Primer Apellido:</h2>
-        <p>{{ afiliado?.primer_apellido || 'Primer apellido no disponible' }}</p>
-  
-
-        <h2>Segundo Apellido:</h2>
-        <p>{{ afiliado?.segundo_apellido || 'Segundo apellido no disponible' }}</p>
-  
-
-        <h2>Primer Nombre:</h2>
-        <p>{{ afiliado?.primer_nombre || 'Primer nombre no disponible' }}</p>
-  
-
-        <h2>Segundo Nombre:</h2>
-        <p>{{ afiliado?.segundo_nombre || 'Segundo nombre no disponible' }}</p>
-  
->
-        <h2>Fecha de Nacimiento:</h2>
-        <p>{{ afiliado?.fecha_nacimiento | date:'longDate' || 'Fecha de nacimiento no disponible' }}</p>
-  
-
-        <h2>Género:</h2>
-        <p>{{ afiliado?.genero || 'Género no disponible' }}</p>
-  
-  
-        <h2>Código Municipio:</h2>
-        <p>{{ afiliado?.codigo_municipio || 'Código municipio no disponible' }}</p>
-  
-        Información opcional: puedes descomentarlas si lo deseas
-
-        <h2>Indicador:</h2>
-        <p>{{ afiliado?.indicador || 'Indicador no disponible' }}</p>
-  
-
-        <h2>Teléfono:</h2>
-        <p>{{ afiliado?.telefono || 'Teléfono no disponible' }}</p>
-  
-     
-        <h2>Dirección:</h2>
-        <p>{{ afiliado?.direccion || 'Dirección no disponible' }}</p>
-  
-    
-        <h2>Email:</h2>
-        <p>{{ afiliado?.email || 'Email no disponible' }}</p>
-  
-     
-        <h2>Fecha de Ingreso:</h2>
-        <p>{{ afiliado?.fecha_ingreso | date:'longDate' || 'Fecha de ingreso no disponible' }}</p>
-  
- 
-        <h2>Fecha de Retiro:</h2>
-        <p>{{ afiliado?.fecha_retiro | date:'longDate' || 'Fecha de retiro no disponible' }}</p>
-  
-      </div>
-    </div>
-  }
-</mat-dialog-content> -->
-<h2 mat-dialog-title>Afiliado</h2>
-<mat-dialog-content>
-    @if(afiliado){
-  <div >
+  @if (afiliado) {
     <div>
-      <p>ID:</p>
-      <p>{{ afiliado?.id || 'ID no disponible' }}</p>
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>ID:</strong>{{ afiliado.id || 'ID no disponible' }}</p>
+     
+       <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Género:</strong> {{ afiliado.genero || 'Género no disponible' }}</p>
 
-      <p>Tipo de Documento:</p>
-      <p>{{ afiliado?.tipo_documento || 'Tipo de documento no disponible' }}</p>
-
-      <p>Número de Identificación:</p>
-      <p>{{ afiliado?.numero_identificacion || 'Número de identificación no disponible' }}</p>
-
-      <p>Primer Apellido:</p>
-      <p>{{ afiliado?.primer_apellido || 'Primer apellido no disponible' }}</p>
-
-      <p>Segundo Apellido:</p>
-      <p>{{ afiliado?.segundo_apellido || 'Segundo apellido no disponible' }}</p>
-
-      <p>Primer Nombre:</p>
-      <p>{{ afiliado?.primer_nombre || 'Primer nombre no disponible' }}</p>
-
-      <p>Segundo Nombre:</p>
-      <p>{{ afiliado?.segundo_nombre || 'Segundo nombre no disponible' }}</p>
-
-      <p>Fecha de Nacimiento:</p>
-      <p>{{ afiliado?.fecha_nacimiento | date: 'longDate' || 'Fecha de nacimiento no disponible' }}</p>
-
-      <p>Género:</p>
-      <p>{{ afiliado?.genero || 'Género no disponible' }}</p>
-
-      <p>Código Municipio:</p>
-      <p>{{ afiliado?.codigo_municipio || 'Código municipio no disponible' }}</p>
-
-      <!-- Otras propiedades opcionales -->
-
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Indicador:</strong> {{ afiliado.indicador || 'Indicador no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Teléfono:</strong> {{ afiliado.telefono || 'Teléfono no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Dirección:</strong> {{ afiliado.direccion || 'Dirección no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Email:</strong> {{ afiliado.email || 'Email no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Tipo de Documento:</strong> {{ afiliado.tipo_documento || 'Tipo de documento no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Número de Identificación:</strong> {{ afiliado.numero_identificacion || 'Número de identificación no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Primer Apellido:</strong> {{ afiliado.primer_apellido || 'Primer apellido no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Segundo Apellido:</strong> {{ afiliado.segundo_apellido || 'Segundo apellido no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Primer Nombre:</strong> {{ afiliado.primer_nombre || 'Primer nombre no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Segundo Nombre:</strong> {{ afiliado.segundo_nombre || 'Segundo nombre no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Nacimiento:</strong> {{ afiliado.fecha_nacimiento | date:'dd/MM/yyyy' || 'Fecha de nacimiento no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Código Municipio:</strong> {{ afiliado.codigo_municipio || 'Código municipio no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Ingreso:</strong> {{ afiliado.fecha_ingreso | date:'dd/MM/yyyy' || 'Fecha de ingreso no disponible' }}</p>
+      
+      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Retiro:</strong> {{ afiliado.fecha_retiro | date:'dd/MM/yyyy' || 'Fecha de retiro no disponible' }}</p>
     </div>
-  </div>
-}
+  } @else {
+    <p>No se encontró información del afiliado.</p>
+  }
+  <button class="btn btn-primary" [routerLink]="['/afiliados', afiliado.id, 'editar']">Editar</button>
+ 
 </mat-dialog-content>
