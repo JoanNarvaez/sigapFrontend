@@ -62,19 +62,27 @@ ngOnInit(): void {
 
 }
 }
+ 
   save() {
     this.form?.markAllAsTouched();
+    
+    if (this.form?.invalid) {
+      console.error('Formulario inválido. Por favor, corrija los errores antes de enviar.');
+      this.errors = ['Por favor, corrija los errores en el formulario antes de enviar.'];
+      return;  // Detiene la ejecución si el formulario es inválido
+    }
+  
     const representantelegalForm = this.form!.value;
-
+  
     if (this.representantelegal) {
-      this.representanteLegalService.update(this.representantelegal.id,representantelegalForm)
+      this.representanteLegalService.update(this.representantelegal.id, representantelegalForm)
         .subscribe({
           next: () => {
             this.errors = [];
             this.router.navigate(['/']);
           },
           error: response => {
-            // console.log('response', response.error);
+            console.error('Error al actualizar:', response.error);
             this.errors = Array.isArray(response.error) ? response.error : [response.error];
           }
         });
@@ -86,11 +94,13 @@ ngOnInit(): void {
             this.router.navigate(['/']);
           },
           error: response => {
-            console.log('response', response.error);
+            console.error('Error al crear:', response.error);
             this.errors = Array.isArray(response.error) ? response.error : [response.error];
           }
         });
     }
   }
+
+
 
 }

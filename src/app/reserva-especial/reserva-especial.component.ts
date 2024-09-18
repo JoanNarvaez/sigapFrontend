@@ -31,9 +31,9 @@ export default class ReservaEspecialComponent implements OnInit {
           this.form = this.fb.group({
             id: [reservaEspecial.id],
             tipo_identificacion: [reservaEspecial.tipo_identificacion, [Validators.required, Validators.maxLength(2)]],
-            tipo_persona: [reservaEspecial.tipo_persona, [Validators.required, Validators.min(1), Validators.max(3)]],
+            tipo_persona: [reservaEspecial.tipo_persona, [Validators.required]],
             numero_identificacion: [reservaEspecial.numero_identificacion, [Validators.required, Validators.maxLength(12), Validators.pattern('^[0-9]*$')]],
-            digito_verificacion: [reservaEspecial.digito_verificacion, [Validators.max(9)]],
+            digito_verificacion: [reservaEspecial.digito_verificacion, [Validators.maxLength(9), Validators.pattern('^[0-9]*$')]],
             razon_social: [reservaEspecial.razon_social, [Validators.maxLength(200)]],
             primer_apellido: [reservaEspecial.primer_apellido, [Validators.required, Validators.maxLength(60)]],
             segundo_apellido: [reservaEspecial.segundo_apellido, [Validators.maxLength(60)]],
@@ -49,9 +49,9 @@ export default class ReservaEspecialComponent implements OnInit {
     } else {
       this.form = this.fb.group({
         tipo_identificacion: ['', [Validators.required, Validators.maxLength(2)]],
-        tipo_persona: ['', [Validators.required, Validators.min(1), Validators.max(3)]],
+        tipo_persona: ['', [Validators.required]],
         numero_identificacion: [null, [Validators.required, Validators.maxLength(12), Validators.pattern('^[0-9]*$')]],
-        digito_verificacion: ['', [Validators.max(9)]],
+        digito_verificacion: ['', [Validators.maxLength(9), Validators.pattern('^[0-9]*$')]],
         razon_social: ['', [Validators.maxLength(200)]],
         primer_apellido: ['', [Validators.required, Validators.maxLength(60)]],
         segundo_apellido: ['', [Validators.maxLength(60)]],

@@ -53,7 +53,7 @@
                     <!-- Mensaje de error para campo inválido -->
                     <div class="invalid-feedback d-block">@if(form.get('razon_social')?.hasError('required') &&
                         form.get('razon_social')?.touched){
-                        <p class="invalid-feedback d-block"> La Razón Social es Obligatoria</p>
+                        <p class="invalid-feedback d-block"> La Razón Social es Obligatorio</p>
                         }
                     </div>
                 </div>
@@ -151,8 +151,8 @@
 
                 <div class="col-md-2 mb-1">
                     <label for="actividad_economica" class="form-label">ACTIVIDAD ECONÓMICA</label>
-                    <input id="actividad_economica" type="text" placeholder="Actividad Económica"
-                        class="form-control" formControlName="actividad_economica"
+                    <input id="actividad_economica" type="text" placeholder="Actividad Económica" class="form-control"
+                        formControlName="actividad_economica"
                         [class.is-invalid]="form.get('actividad_economica')?.invalid && form.get('actividad_economica')?.touched"
                         [class.is-valid]="form.get('actividad_economica')?.valid">
                     <!-- Mensaje de feedback de éxito -->
@@ -192,7 +192,7 @@
                         <p class="invalid-feedback d-block">El Teléfono es Obligatorio</p>
                         }
                         @if (form.get('telefono')?.hasError('maxlength')) {
-                        <p>El El Teléfono debe tener máximo de 22 Caracteres</p>
+                        <p>El Teléfono debe tener máximo de 22 Caracteres</p>
                         }
                     </div>
                     }
@@ -203,7 +203,7 @@
                     <input id="direccion" type="text" placeholder="Dirección" class="form-control"
                         formControlName="direccion"
                         [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
-                        [class.is-valid]="form.get('direccion')?.valid">
+                        [class.is-valid]="form.get('direccion')?.valid"  style="text-transform: uppercase;">
                     <div class="valid-feedback">
                         ¡Parece bien!
                     </div>
@@ -220,9 +220,8 @@
                     }
                 </div>
                 <div class="col-md-4 mb-1">
-                    <label for="email">DIRECCIÓN</label>
-                    <input id="email" type="text" placeholder="Email" class="form-control"
-                        formControlName="email"
+                    <label for="email">EMAIL</label>
+                    <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
                         [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
                         [class.is-valid]="form.get('email')?.valid">
                     <div class="valid-feedback">
@@ -237,15 +236,19 @@
                         @if (form.get('email')?.hasError('maxlength')) {
                         <p>EL Correo debe tener máximo de 101 Caracteres</p>
                         }
+                        @if (form.get('email')?.hasError('email')) {
+                            <p>EL Correo no es válido</p>
+                            }
+
                     </div>
                     }
                 </div>
-                
+
 
                 <div class="col-md-2 mb-1">
                     <label for="valor_activo" class="form-label">VALOR ACTIVO</label>
-                    <input id="valor_activo" type="text" placeholder="Valor Activo"
-                        class="form-control" formControlName="valor_activo"
+                    <input id="valor_activo" type="text" placeholder="Valor Activo" class="form-control"
+                        formControlName="valor_activo"
                         [class.is-invalid]="form.get('valor_activo')?.invalid && form.get('valor_activo')?.touched"
                         [class.is-valid]="form.get('valor_activo')?.valid">
                     <!-- Mensaje de feedback de éxito -->
@@ -271,8 +274,8 @@
 
                 <div class="col-md-2 mb-1">
                     <label for="valor_pasivo" class="form-label">VALOR PASIVO</label>
-                    <input id="valor_pasivo" type="text" placeholder="Valor Pasivo"
-                        class="form-control" formControlName="valor_pasivo"
+                    <input id="valor_pasivo" type="text" placeholder="Valor Pasivo" class="form-control"
+                        formControlName="valor_pasivo"
                         [class.is-invalid]="form.get('valor_pasivo')?.invalid && form.get('valor_pasivo')?.touched"
                         [class.is-valid]="form.get('valor_pasivo')?.valid">
                     <!-- Mensaje de feedback de éxito -->
@@ -294,13 +297,13 @@
                     </div>
                     }
                 </div>
-  
+
 
 
                 <div class="col-md-2 mb-1">
                     <label for="valor_patrimonio" class="form-label">VALOR PATRIMONIO</label>
-                    <input id="valor_patrimonio" type="text" placeholder="Valor Patrimonio"
-                        class="form-control" formControlName="valor_patrimonio"
+                    <input id="valor_patrimonio" type="text" placeholder="Valor Patrimonio" class="form-control"
+                        formControlName="valor_patrimonio"
                         [class.is-invalid]="form.get('valor_patrimonio')?.invalid && form.get('valor_patrimonio')?.touched"
                         [class.is-valid]="form.get('valor_patrimonio')?.valid">
                     <!-- Mensaje de feedback de éxito -->
@@ -322,7 +325,7 @@
                     </div>
                     }
                 </div>
-              
+
                 <div class="col-md-2 mb-1">
                     <label for="valor_patrimonio_sin_re" class="form-label">VALOR PATRIMONIO SIN RESERVAS</label>
                     <input id="valor_patrimonio_sin_re" type="text" placeholder="Valor Patrimonio Sin Reservas"
@@ -348,7 +351,7 @@
                     </div>
                     }
                 </div>
-               
+
                 <div class="col-md-2 mb-1">
                     <label for="valor_reserva_especial" class="form-label">VALOR RESERVAS ESPECIAL</label>
                     <input id="valor_reserva_especial" type="text" placeholder="Valor Reserva Especial"
@@ -374,13 +377,13 @@
                     </div>
                     }
                 </div>
-               
-                
+
+
 
                 <div class="col-md-2 mb-1">
                     <label for="codigo_Contable" class="form-label">CÓDIGO CONTABLE</label>
-                    <input id="codigo_Contable" type="text" placeholder="Valor Reserva Especial"
-                        class="form-control" formControlName="codigo_Contable"
+                    <input id="codigo_Contable" type="text" placeholder="Valor Reserva Especial" class="form-control"
+                        formControlName="codigo_Contable"
                         [class.is-invalid]="form.get('codigo_Contable')?.invalid && form.get('codigo_Contable')?.touched"
                         [class.is-valid]="form.get('codigo_Contable')?.valid">
                     <!-- Mensaje de feedback de éxito -->
@@ -402,12 +405,12 @@
                     </div>
                     }
                 </div>
-                
+
 
                 <div class="text-end">
                     <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
                     <!-- <button class="btn btn-primary" [routerLink]="['/empresa', empresa?.id, 'editar']">Editar</button> -->
-                    <button class="btn btn-primary ms-2">
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-primary ms-2">
                         @if(empresa){
                         Actualizar Empresa
                         }@else{

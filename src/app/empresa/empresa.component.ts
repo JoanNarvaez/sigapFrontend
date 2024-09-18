@@ -77,41 +77,46 @@ ngOnInit(): void {
 
 
 }
-  save() {
-    this.form?.markAllAsTouched();
-    const empresaForm = this.form!.value;
+save() {
+  this.form?.markAllAsTouched();  // Marca todos los campos como tocados para activar las validaciones
 
-    if (this.empresa) {
-      this.empresaService.update(this.empresa.id, empresaForm)
-        .subscribe({
-          next: () => {
-            this.errors = [];
-            this.router.navigate(['/']);
-          },
-          error: response => {
-            console.log('response', response.error);
-            this.errors = Array.isArray(response.error) ? response.error : [response.error];
-          }
-        });
-    } else {
-      this.empresaService.create(empresaForm)
-        .subscribe({
-          next: () => {
-            this.errors = [];
-            this.router.navigate(['/']);
-          },
-          error: response => {
-            console.log('response', response.error);
-            this.errors = Array.isArray(response.error) ? response.error : [response.error];
-          }
-        });
-    }
+  // Verifica si el formulario es inválido
+  if (this.form?.invalid) {
+    console.error('Formulario inválido. Por favor, corrija los errores antes de enviar.');
+    this.errors = ['Por favor, corrija los errores en el formulario antes de enviar.'];
+    return;  // Detiene la ejecución si el formulario es inválido
   }
 
- 
+  // Obtiene los valores del formulario
+  const empresaForm = this.form!.value;
 
-
+  // Verifica si la entidad empresa ya existe para actualizar o crear una nueva
+  if (this.empresa) {
+    // Si existe, realiza la actualización
+    this.empresaService.update(this.empresa.id, empresaForm)
+      .subscribe({
+        next: () => {
+          this.errors = [];
+          this.router.navigate(['/']);  // Redirige después de la actualización
+        },
+        error: response => {
+          console.error('Error al actualizar:', response.error);
+          this.errors = Array.isArray(response.error) ? response.error : [response.error];
+        }
+      });
+  } else {
+    // Si no existe, crea una nueva empresa
+    this.empresaService.create(empresaForm)
+      .subscribe({
+        next: () => {
+          this.errors = [];
+          this.router.navigate(['/']);  // Redirige después de la creación
+        },
+        error: response => {
+          console.error('Error al crear:', response.error);
+          this.errors = Array.isArray(response.error) ? response.error : [response.error];
+        }
+      });
   }
-
-
-
+}
+}
