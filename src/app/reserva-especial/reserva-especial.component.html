@@ -20,7 +20,7 @@
         }
 
         <form [formGroup]="form" (submit)="save()">
-            
+            <div class="row justify-content text-left"> 
             <div class="col-md-2 mb-1">
                 <label for="tipo_identificacion" class="form-label">TIPO IDENTIFICACIÓN</label>
                 <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion"
@@ -70,7 +70,7 @@
 
          
 
-            <div class="col-md-2 mb-1">
+            <div class="col-md-3 mb-1">
                 <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN</label>
                 <input id="numero_identificacion" type="text" placeholder="Número Identificación"
                     class="form-control" formControlName="numero_identificacion"
@@ -306,6 +306,7 @@
 
                 </div>
                 }
+            </div>
             </div>
 
             <div class="text-end">

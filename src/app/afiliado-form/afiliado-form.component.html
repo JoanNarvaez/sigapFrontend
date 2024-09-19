@@ -20,9 +20,9 @@
             }
             <form [formGroup]="form" (submit)="save()">
 
-
-                <div class="col-md-2 mb-1">
-                    <label for="tipo_documento" class="form-label">TIPO DOCUMENTOS</label>
+                <div class="row justify-content-between text-left">
+                <div class="col-md-3 mb-1">
+                    <label for="tipo_documento" class="form-label">TIPO DOCUMENTOS<span class="text-danger"> *</span></label>
                     <select id="tipo_documento" class="form-control" formControlName="tipo_documento"
                         [class.is-invalid]="form.get('tipo_documento')?.invalid && form.get('tipo_documento')?.touched"
                         [class.is-valid]="form.get('tipo_documento')?.valid">
@@ -45,8 +45,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-2 mb-1">
-                    <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN</label>
+                <div class="col-md-3 mb-1">
+                    <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN<span class="text-danger"> *</span></label>
                     <input id="numero_identificacion" type="text" placeholder="Número Identificación"
                         class="form-control" formControlName="numero_identificacion"
                         [class.is-invalid]="form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched"
@@ -70,9 +70,35 @@
                     </div>
                     }
                 </div>
+                <div class="col-md-3 mb-1">
+                    <label for="indicador" class="form-label">INDICADOR<span class="text-danger"> *</span></label>
+                    <select id="indicador" class="form-control" formControlName="indicador"
+                        [class.is-invalid]="form.get('indicador')?.invalid && form.get('indicador')?.touched"
+                        [class.is-valid]="form.get('indicador')?.valid">
+                        <option value="I">INGRESO</option>
+                        <option value="A">ACTUALIZACIÓN</option>
+                        <option value="E">ELIMINAR</option>
+                    </select>
+                    <!-- Mensaje de feedback de éxito -->
+                    <div class="valid-feedback">
+                        ¡Parece bien!
+                    </div>
+                    <!-- Mensaje de error para campo inválido -->
+                    <div class="invalid-feedback d-block">
+                        @if(form.get('indicador')?.hasError('required') &&
+                        form.get('indicador')?.touched){
+                        <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
+                        }
+                    </div>
+                </div>
 
+
+
+
+</div>
+<div class="row justify-content-between text-left">
                 <div class="col-md-5 mb-1">
-                    <label for="primer_apellido" class="form-label">PRIMER APELLIDO</label>
+                    <label for="primer_apellido" class="form-label">PRIMER APELLIDO<span class="text-danger"> *</span></label>
                     <input id="primer_apellido" type="text" placeholder="Primer Apellido" class="form-control"
                         formControlName="primer_apellido"
                         [class.is-invalid]="form.get('primer_apellido')?.invalid && form.get('primer_apellido')?.touched"
@@ -103,9 +129,10 @@
 
                 </div>
 
-
+</div>
+<div class="row justify-content-between text-left">
                 <div class="col-md-5 mb-1">
-                    <label for="primer_nombre" class="form-label">PRIMER NOMBRE</label>
+                    <label for="primer_nombre" class="form-label">PRIMER NOMBRE<span class="text-danger"> *</span></label>
                     <input id="primer_nombre" type="text" placeholder="Primer Nombre" class="form-control"
                         formControlName="primer_nombre"
                         [class.is-invalid]="form.get('primer_nombre')?.invalid && form.get('primer_nombre')?.touched"
@@ -137,13 +164,13 @@
                 </div>
 
 
+            </div>
 
 
 
-
-
+            <div class="row justify-content-between text-left">
                 <div class="col-md-2 mb-1">
-                    <label for="fecha_nacimiento" class="form-label">FECHA NACIMIENTO</label>
+                    <label for="fecha_nacimiento" class="form-label">FECHA NACIMIENTO<span class="text-danger"> *</span></label>
                     <input id="fecha_nacimiento" type="date" class="form-control" formControlName="fecha_nacimiento"
                         [class.is-invalid]="form.get('fecha_nacimiento')?.invalid && form.get('fecha_nacimiento')?.touched"
                         [class.is-valid]="form.get('fecha_nacimiento')?.valid && form.get('fecha_nacimiento')?.touched">
@@ -175,7 +202,7 @@
                 </div>
 
                 <div class="col-md-2 mb-1">
-                    <label for="genero" class="form-label">GÉNERO</label>
+                    <label for="genero" class="form-label">GÉNERO<span class="text-danger"> *</span></label>
                     <select id="genero" class="form-control" formControlName="genero"
                         [class.is-invalid]="form.get('genero')?.invalid && form.get('genero')?.touched"
                         [class.is-valid]="form.get('genero')?.valid">
@@ -202,7 +229,7 @@
 
 
                 <div class="col-md-2 mb-1">
-                    <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
+                    <label for="codigo_municipio">CÓDIGO MUNICIPIO<span class="text-danger"> *</span></label>
                     <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
                         formControlName="codigo_municipio"
                         [class.is-invalid]="form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched"
@@ -223,102 +250,8 @@
                     }
                 </div>
 
-
                 <div class="col-md-2 mb-1">
-                    <label for="indicador" class="form-label">INDICADOR</label>
-                    <select id="indicador" class="form-control" formControlName="indicador"
-                        [class.is-invalid]="form.get('indicador')?.invalid && form.get('indicador')?.touched"
-                        [class.is-valid]="form.get('indicador')?.valid">
-                        <option value="I">INGRESO</option>
-                        <option value="A">ACTUALIZACIÓN</option>
-                        <option value="E">ELIMINAR</option>
-                    </select>
-                    <!-- Mensaje de feedback de éxito -->
-                    <div class="valid-feedback">
-                        ¡Parece bien!
-                    </div>
-                    <!-- Mensaje de error para campo inválido -->
-                    <div class="invalid-feedback d-block">
-                        @if(form.get('indicador')?.hasError('required') &&
-                        form.get('indicador')?.touched){
-                        <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
-                        }
-                    </div>
-                </div>
-
-
-                <div class="col-md-2 mb-1">
-                    <label for="telefono">TELÉFONO</label>
-                    <input id="telefono" type="text" placeholder="Teléfono" class="form-control"
-                        formControlName="telefono"
-                        [class.is-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched"
-                        [class.is-valid]="form.get('telefono')?.valid">
-                    <div class="valid-feedback">
-                        ¡Parece bien!
-                    </div>
-                    <!-- Mensaje de error para campo inválido -->
-                    @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
-                    <div class="invalid-feedback d-block">
-                        @if(form.get('telefono')?.hasError('required')){
-                        <p class="invalid-feedback d-block">El Teléfono es Obligatorio</p>
-                        }
-                        @if (form.get('telefono')?.hasError('maxlength')) {
-                        <p>El El Teléfono debe tener máximo de 22 Caracteres</p>
-                        }
-                    </div>
-                    }
-                </div>
-
-                <div class="col-md-5 mb-1">
-                    <label for="direccion">DIRECCIÓN</label>
-                    <input id="direccion" type="text" placeholder="Dirección" class="form-control"
-                        formControlName="direccion"
-                        [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
-                        [class.is-valid]="form.get('direccion')?.valid" style="text-transform: uppercase;">
-                    <div class="valid-feedback">
-                        ¡Parece bien!
-                    </div>
-                    <!-- Mensaje de error para campo inválido -->
-                    @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
-                    <div class="invalid-feedback d-block">
-                        @if(form.get('direccion')?.hasError('required')){
-                        <p class="invalid-feedback d-block">La Dirección es Obligatorio</p>
-                        }
-                        @if (form.get('direccion')?.hasError('maxlength')) {
-                        <p>La Dirección debe tener máximo de 200 Caracteres</p>
-                        }
-                    </div>
-                    }
-                </div>
-                <div class="col-md-4 mb-1">
-                    <label for="email">EMAIL</label>
-                    <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
-                        [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
-                        [class.is-valid]="form.get('email')?.valid">
-                    <div class="valid-feedback">
-                        ¡Parece bien!
-                    </div>
-                    <!-- Mensaje de error para campo inválido -->
-                    @if (form.get('email')?.invalid && form.get('email')?.touched) {
-                    <div class="invalid-feedback d-block">
-                        @if(form.get('email')?.hasError('required')){
-                        <p class="invalid-feedback d-block">El Correo es Obligatorio</p>
-                        }
-                        @if (form.get('email')?.hasError('maxlength')) {
-                        <p>EL Correo debe tener máximo de 101 Caracteres</p>
-                        }
-                        @if (form.get('email')?.hasError('email')) {
-                        <p>EL Correo no es válido</p>
-                        }
-
-                    </div>
-                    }
-                </div>
-
-
-
-                <div class="col-md-2 mb-1">
-                    <label for="fecha_ingreso" class="form-label">FECHA DE INGRESO</label>
+                    <label for="fecha_ingreso" class="form-label">FECHA DE INGRESO<span class="text-danger"> *</span></label>
                     <input id="fecha_ingreso" type="date" class="form-control" formControlName="fecha_ingreso"
                         [class.is-invalid]="form.get('fecha_ingreso')?.invalid && form.get('fecha_ingreso')?.touched"
                         [class.is-valid]="form.get('fecha_ingreso')?.valid && form.get('fecha_ingreso')?.touched">
@@ -376,6 +309,80 @@
                         </div>
                         }
                     </div>
+               </div>
+
+               <div class="row justify-content-between text-left">
+                <div class="col-md-2 mb-1">
+                    <label for="telefono">TELÉFONO<span class="text-danger"> *</span></label>
+                    <input id="telefono" type="text" placeholder="Teléfono" class="form-control"
+                        formControlName="telefono"
+                        [class.is-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched"
+                        [class.is-valid]="form.get('telefono')?.valid">
+                    <div class="valid-feedback">
+                        ¡Parece bien!
+                    </div>
+                    <!-- Mensaje de error para campo inválido -->
+                    @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+                    <div class="invalid-feedback d-block">
+                        @if(form.get('telefono')?.hasError('required')){
+                        <p class="invalid-feedback d-block">El Teléfono es Obligatorio</p>
+                        }
+                        @if (form.get('telefono')?.hasError('maxlength')) {
+                        <p>El El Teléfono debe tener máximo de 22 Caracteres</p>
+                        }
+                    </div>
+                    }
+                </div>
+
+                <div class="col-md-5 mb-1">
+                    <label for="direccion">DIRECCIÓN<span class="text-danger"> *</span></label>
+                    <input id="direccion" type="text" placeholder="Dirección" class="form-control"
+                        formControlName="direccion"
+                        [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
+                        [class.is-valid]="form.get('direccion')?.valid" style="text-transform: uppercase;">
+                    <div class="valid-feedback">
+                        ¡Parece bien!
+                    </div>
+                    <!-- Mensaje de error para campo inválido -->
+                    @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
+                    <div class="invalid-feedback d-block">
+                        @if(form.get('direccion')?.hasError('required')){
+                        <p class="invalid-feedback d-block">La Dirección es Obligatorio</p>
+                        }
+                        @if (form.get('direccion')?.hasError('maxlength')) {
+                        <p>La Dirección debe tener máximo de 200 Caracteres</p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="col-md-4 mb-1">
+                    <label for="email">EMAIL</label>
+                    <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
+                        [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+                        [class.is-valid]="form.get('email')?.valid">
+                    <div class="valid-feedback">
+                        ¡Parece bien!
+                    </div>
+                    <!-- Mensaje de error para campo inválido -->
+                    @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                    <div class="invalid-feedback d-block">
+                        @if(form.get('email')?.hasError('required')){
+                        <p class="invalid-feedback d-block">El Correo es Obligatorio</p>
+                        }
+                        @if (form.get('email')?.hasError('maxlength')) {
+                        <p>EL Correo debe tener máximo de 101 Caracteres</p>
+                        }
+                        @if (form.get('email')?.hasError('email')) {
+                        <p>EL Correo no es válido</p>
+                        }
+
+                    </div>
+                    }
+                </div>
+
+</div>
+
+               
 
                 <div class="text-end">
                     <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
