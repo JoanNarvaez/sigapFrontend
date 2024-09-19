@@ -9,6 +9,5 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideHttpClient(), provideAnimationsAsync()
     ]
-//providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration()]
-// providers: [provideRouter(routes),provideHttpClient()]
+
 };

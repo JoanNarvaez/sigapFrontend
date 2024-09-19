@@ -1,87 +1,99 @@
 <div class="container">
     <h2 class="mb-5">Mis Afiliados</h2>
 
-<div class="text-end">
-    <button class="btn btn-primary" routerLink="/new">Nuevo Contacto</button>
-</div>
+    <div class="text-end">
+        <button class="btn btn-primary" routerLink="/new">Nuevo Contacto</button>
+    </div>
 
 
-<table class="table table-hover table-striped">
-    <thead class="table-dark">
-        <tr >
-            <th>ID</th>
-            <th>T.DOCUMENTO</th>
-            <th>N.IDENTIFICACIÓN</th>
-            <th>PRIMER APELLIDO</th>
-            <th>SEGUNDO APELLIDO</th>
-            <th>PRIMER NOMBRE</th>
-            <th>SEGUNDO NOMBRE</th>
-            <th>FECHA NACIMIENTO</th>
-            <th>GÉNERO</th>
-            <th>CÓDIGO MUNICIPIO</th>
-            <!-- <th>INDICADOR</th>
+    <table class="table table-hover table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>T.DOCUMENTO</th>
+                <th>N.IDENTIFICACIÓN</th>
+                <th>PRIMER APELLIDO</th>
+                <th>SEGUNDO APELLIDO</th>
+                <th>PRIMER NOMBRE</th>
+                <th>SEGUNDO NOMBRE</th>
+                <th>FECHA NACIMIENTO</th>
+                <th>GÉNERO</th>
+                <th>CÓDIGO MUNICIPIO</th>
+                <!-- <th>INDICADOR</th>
         <th>TELEFONO</th>
         <th>DIRECCION</th>
         <th>EMAIL</th>
         <th>FECHA DE INGRESO</th>
         <th>FECHA DE RETIRO</th> -->
-           
 
-        </tr>
-    </thead>
-    <tbody>
 
-        @for (afiliado of paginatedAfiliados; track afiliado.id) {
+            </tr>
+        </thead>
+        <tbody>
 
-        <tr>
+            @for (afiliado of paginatedAfiliados; track afiliado.id) {
 
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.id}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.tipo_documento}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.numero_identificacion}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.primer_apellido}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.segundo_apellido}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.primer_nombre}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.segundo_nombre}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.fecha_nacimiento}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.genero}}</td>
-            <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.codigo_municipio}}</td>
-            <td class="text-end"></td>
-            <!-- <th>{{afiliado.indicador}}</th>
+            <tr>
+
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.id}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.tipo_documento}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.numero_identificacion}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.primer_apellido}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.segundo_apellido}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.primer_nombre}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.segundo_nombre}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.fecha_nacimiento}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.genero}}</td>
+                <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.codigo_municipio}}</td>
+                <td class="text-end"></td>
+                <!-- <th>{{afiliado.indicador}}</th>
         <th>{{afiliado.telefono}}</th>
         <th>{{afiliado.direccion}}</th>
         <th>{{afiliado.email}}</th>
         <th>{{afiliado.fecha_ingreso}}</th>
         <th>{{afiliado.fecha_retiro}}</th> -->
-            <th>
-                <div class="btn-group">
-                    <button class="btn btn-primary" [routerLink]="['/afiliados', afiliado.id, 'editar']">Editar</button>
-                    <button class="btn btn-danger" (click)="deleteAfiliado(afiliado)">Eliminar</button>
-                </div>
-            </th>
+                <th>
+                    <div class="btn-group">
+                        <button class="btn btn-primary"
+                            [routerLink]="['/afiliados', afiliado.id, 'editar']">Editar</button>
+                        <button class="btn btn-danger" (click)="deleteAfiliado(afiliado)" routerLink="/" >Eliminar </button>
+
+                        <!-- <button type="button" class="btn btn-outline-info">Info</button> -->
+                    </div>
+                </th>
 
 
 
 
-        </tr>
+            </tr>
 
-        }
-    </tbody>
-</table>
-<nav aria-label="Paginación de afiliados">
-    <ul class="pagination justify-content-center">
-        <li class="page-item" [class.disabled]="currentPage === 1">
-            <a class="page-link" (click)="previousPage()">Anterior</a>
-        </li>
-        @for (page of [1, 2, 3, 4, 5]; track page) {
-            @if (page <= totalPages) {
-                <li class="page-item" [class.active]="currentPage === page">
-                    <a class="page-link" (click)="goToPage(page)">{{page}}</a>
-                </li>
             }
-        }
-        <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <a class="page-link" (click)="nextPage()">Siguiente</a>
-        </li>
-    </ul>
-</nav>
+        </tbody>
+    </table>
+    
+
+
+
+
+
+    <button class="btn btn-outline-info" (click)="downloadAllData()"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z"/>
+      </svg> Generar Archivo Plano</button>
+
+    <nav aria-label="Paginación de afiliados">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" [class.disabled]="currentPage === 1">
+                <a class="page-link" (click)="previousPage()">Anterior</a>
+            </li>
+            @for (page of [1, 2, 3, 4, 5]; track page) {
+            @if (page <= totalPages) { <li class="page-item" [class.active]="currentPage === page">
+                <a class="page-link" (click)="goToPage(page)">{{page}}</a>
+                </li>
+                }
+                }
+                <li class="page-item" [class.disabled]="currentPage === totalPages">
+                    <a class="page-link" (click)="nextPage()">Siguiente</a>
+                </li>
+        </ul>
+    </nav>
 </div>

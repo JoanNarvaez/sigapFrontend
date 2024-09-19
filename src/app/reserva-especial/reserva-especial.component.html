@@ -1,326 +1,330 @@
 <div class="container">
-<h2 class="mb-5">
-    @if(reservaEspecial){
-    Editar Reserva Especial
-    }@else{
-    Nueva Reserva Especial
-    }
-</h2>
-<div class="row row-cols-7 justify-content-center">
-    @if(form){
-    <div>
-        @if(errors.length){
-        <div class="alert alert-danger">
-            <ul>
-                @for (error of errors; track error) {
-                <li>{{error}}</li>
-                }
-            </ul>
-        </div>
+    <h2 class="mb-5">
+        @if(reservaEspecial){
+        Editar Reserva Especial
+        }@else{
+        Nueva Reserva Especial
+        <button class="btn btn-primary" routerLink="/new-reserva-especial">Agregar Reserva Especial</button>
         }
-
-        <form [formGroup]="form" (submit)="save()">
-            <div class="row justify-content text-left"> 
-            <div class="col-md-2 mb-1">
-                <label for="tipo_identificacion" class="form-label">TIPO IDENTIFICACIÓN</label>
-                <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion"
-                    [class.is-invalid]="form.get('tipo_identificacion')?.invalid && form.get('tipo_identificacion')?.touched"
-                    [class.is-valid]="form.get('tipo_identificacion')?.valid">
-                    <option value="NI">Nit</option>
-                    <option value="CC">Cédula de ciudadanía</option>
-                    <option value="CE">Cédula de extranjería</option>
-                    
-                </select>
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                <div class="invalid-feedback d-block">
-                    @if(form.get('tipo_identificacion')?.hasError('required') &&
-                    form.get('tipo_identificacion')?.touched){
-                    <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
+    </h2>
+    <div class="row row-cols-7 justify-content-center">
+        @if(form){
+        <div>
+            @if(errors.length){
+            <div class="alert alert-danger">
+                <ul>
+                    @for (error of errors; track error) {
+                    <li>{{error}}</li>
                     }
-                </div>
+                </ul>
             </div>
-            
-            
-            <div class="col-md-2 mb-1">
-                <label for="tipo_persona" class="form-label">TIPO DE PERSONA</label>
-                <select id="tipo_persona" class="form-control" formControlName="tipo_persona"
-                    [class.is-invalid]="form.get('tipo_persona')?.invalid && form.get('tipo_persona')?.touched"
-                    [class.is-valid]="form.get('tipo_persona')?.valid">
-                    <option value="1">Representante Legal</option>
-                    <option value="2">Revisoría Fiscal</option>
-                    <option value="2">Contador</option>
-                    
-                </select>
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                <div class="invalid-feedback d-block">
-                    @if(form.get('tipo_identificacion')?.hasError('required') &&
-                    form.get('tipo_identificacion')?.touched){
-                    <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
-                    }
-                </div>
-            </div>
+            }
 
-         
+            <form [formGroup]="form" (submit)="save()">
+                <div class="row justify-content text-left">
+                    <div class="col-md-2 mb-1">
+                        <label for="tipo_identificacion" class="form-label">TIPO IDENTIFICACIÓN</label>
+                        <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion"
+                            [class.is-invalid]="form.get('tipo_identificacion')?.invalid && form.get('tipo_identificacion')?.touched"
+                            [class.is-valid]="form.get('tipo_identificacion')?.valid">
+                            <option value="NI">Nit</option>
+                            <option value="CC">Cédula de ciudadanía</option>
+                            <option value="CE">Cédula de extranjería</option>
 
-            <div class="col-md-3 mb-1">
-                <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN</label>
-                <input id="numero_identificacion" type="text" placeholder="Número Identificación"
-                    class="form-control" formControlName="numero_identificacion"
-                    [class.is-invalid]="form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched"
-                    [class.is-valid]="form.get('numero_identificacion')?.valid">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched) {
-                <div class="invalid-feedback d-block">
-                    @if (form.get('numero_identificacion')?.hasError('required')) {
-                    <p>El Número Identificación es Obligatorio</p>
-                    }
-                    @if (form.get('numero_identificacion')?.hasError('maxlength')) {
-                    <p>El Número Identificación debe tener un máximo de 16 dígitos</p>
-                    }
-                    @if (form.get('numero_identificacion')?.hasError('pattern')) {
-                    <p>El Número Identificación debe contener solo números</p>
-                    }
-                </div>
-                }
-            </div>
-
-            <div class="col-md-2 mb-1">
-                <label for="digito_verificacion" class="form-label">DÍGITO DE VERIFICACIÓN</label>
-                <input id="digito_verificacion" type="text" placeholder="Dígito de Verificación"
-                    class="form-control" formControlName="digito_verificacion"
-                    [class.is-invalid]="form.get('digito_verificacion')?.invalid && form.get('digito_verificacion')?.touched"
-                    [class.is-valid]="form.get('digito_verificacion')?.valid">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('digito_verificacion')?.invalid && form.get('digito_verificacion')?.touched) {
-                <div class="invalid-feedback d-block">
-                    
-                    @if (form.get('digito_verificacion')?.hasError('maxlength')) {
-                    <p>El Dígito de Verificación debe ser un dígito</p>
-                    }
-                    @if (form.get('digito_verificacion')?.hasError('pattern')) {
-                    <p>El Dígito de Verificación debe contener solo un número</p>
-                    }
-                </div>
-                }
-            </div>
-
-            <div class="col-md-7 mb-1">
-                <label for="razon_social" class="form-label">RAZÓN SOCIAL</label>
-                <input id="razon_social" type="text" placeholder="Razón Social" class="form-control"
-                    formControlName="razon_social"
-                    [class.is-invalid]="form.get('razon_social')?.invalid && form.get('razon_social')?.touched"
-                    [class.is-valid]="form.get('razon_social')?.valid" style="text-transform: uppercase;">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                
-            </div>
-
-
-            <div class="col-md-5 mb-1">
-                <label for="primer_apellido" class="form-label">PRIMER APELLIDO</label>
-                <input id="primer_apellido" type="text" placeholder="Primer Apellido" class="form-control"
-                    formControlName="primer_apellido"
-                    [class.is-invalid]="form.get('primer_apellido')?.invalid && form.get('primer_apellido')?.touched"
-                    [class.is-valid]="form.get('primer_apellido')?.valid" style="text-transform: uppercase;">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                <div class="invalid-feedback d-block">@if(form.get('primer_apellido')?.hasError('required') &&
-                    form.get('primer_apellido')?.touched){
-                    <p class="invalid-feedback d-block"> El Primer Nombre es Obligatorio</p>
-                    }
-                </div>
-            </div>
-
-            <div class="col-md-5 mb-1">
-                <label for="segundo_apellido" class="form-label">SEGUNDO APELLIDO</label>
-                <input id="segundo_apellido" type="text" placeholder="Segundo Apellido" class="form-control"
-                    formControlName="segundo_apellido"
-                    [class.is-invalid]="form.get('segundo_apellido')?.invalid && form.get('segundo_apellido')?.touched"
-                    [class.is-valid]="form.get('segundo_apellido')?.valid" style="text-transform: uppercase;">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-
-            </div>
-
-
-            <div class="col-md-5 mb-1">
-                <label for="primer_nombre" class="form-label">PRIMER NOMBRE</label>
-                <input id="primer_nombre" type="text" placeholder="Primer Nombre" class="form-control"
-                    formControlName="primer_nombre"
-                    [class.is-invalid]="form.get('primer_nombre')?.invalid && form.get('primer_nombre')?.touched"
-                    [class.is-valid]="form.get('primer_nombre')?.valid" style="text-transform: uppercase;">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                <div class="invalid-feedback d-block">@if(form.get('primer_nombre')?.hasError('required') &&
-                    form.get('primer_nombre')?.touched){
-                    <p class="invalid-feedback d-block"> El Primer Nombre es Obligatorio</p>
-                    }
-                </div>
-            </div>
-
-            <div class="col-md-5 mb-1">
-                <label for="segundo_nombre" class="form-label">SEGUNDO NOMBRE</label>
-                <input id="segundo_nombre" type="text" placeholder="Segundo Nombre" class="form-control"
-                    formControlName="segundo_nombre"
-                    [class.is-invalid]="form.get('segundo_nombre')?.invalid && form.get('segundo_nombre')?.touched"
-                    [class.is-valid]="form.get('segundo_nombre')?.valid" style="text-transform: uppercase;">
-                <!-- Mensaje de feedback de éxito -->
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-
-            </div>
-
-            <div class="col-md-5 mb-1">
-                <label for="tarjeta_profecional" class="form-label">Tarjeta Profesional</label>
-                <input id="tarjeta_profecional" type="text" placeholder="Tarjeta Profesional" class="form-control"
-                    formControlName="tarjeta_profecional"
-                    [class.is-invalid]="form.get('tarjeta_profecional')?.invalid && form.get('tarjeta_profecional')?.touched"
-                    [class.is-valid]="form.get('tarjeta_profecional')?.valid" style="text-transform: uppercase;">
-                    <div class="valid-feedback">
-                        ¡Parece bien!
+                        </select>
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('tipo_identificacion')?.hasError('required') &&
+                            form.get('tipo_identificacion')?.touched){
+                            <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
+                            }
+                        </div>
                     </div>
-                    <!-- Mensaje de error para campo inválido -->
-                    <div class="invalid-feedback d-block">@if(form.get('tarjeta_profecional')?.hasError('maxlength') &&
-                        form.get('tarjeta_profecional')?.touched){
-                        <p class="invalid-feedback d-block"> Tarjeta Profesional debe tener máximo de 22 Caracteres</p>
-                        
+
+
+                    <div class="col-md-2 mb-1">
+                        <label for="tipo_persona" class="form-label">TIPO DE PERSONA</label>
+                        <select id="tipo_persona" class="form-control" formControlName="tipo_persona"
+                            [class.is-invalid]="form.get('tipo_persona')?.invalid && form.get('tipo_persona')?.touched"
+                            [class.is-valid]="form.get('tipo_persona')?.valid">
+                            <option value="1">Representante Legal</option>
+                            <option value="2">Revisoría Fiscal</option>
+                            <option value="2">Contador</option>
+
+                        </select>
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('tipo_identificacion')?.hasError('required') &&
+                            form.get('tipo_identificacion')?.touched){
+                            <p class="invalid-feedback d-block">Este Campo es Obligatorio</p>
+                            }
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-md-3 mb-1">
+                        <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN</label>
+                        <input id="numero_identificacion" type="text" placeholder="Número Identificación"
+                            class="form-control" formControlName="numero_identificacion"
+                            [class.is-invalid]="form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched"
+                            [class.is-valid]="form.get('numero_identificacion')?.valid">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            @if (form.get('numero_identificacion')?.hasError('required')) {
+                            <p>El Número Identificación es Obligatorio</p>
+                            }
+                            @if (form.get('numero_identificacion')?.hasError('maxlength')) {
+                            <p>El Número Identificación debe tener un máximo de 16 dígitos</p>
+                            }
+                            @if (form.get('numero_identificacion')?.hasError('pattern')) {
+                            <p>El Número Identificación debe contener solo números</p>
+                            }
+                        </div>
                         }
                     </div>
-            </div>
 
-            <div class="col-md-2 mb-1">
-                <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
-                <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
-                    formControlName="codigo_municipio"
-                    [class.is-invalid]="form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched"
-                    [class.is-valid]="form.get('codigo_municipio')?.valid">
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched) {
-                <div class="invalid-feedback d-block">
-                    @if(form.get('codigo_municipio')?.hasError('required')){
-                    <p class="invalid-feedback d-block">El Código Municipio es Obligatorio</p>
-                    }
-                    @if (form.get('codigo_municipio')?.hasError('maxlength')) {
-                    <p>El Codigo Municipio debe tener máximo de 5 dígitos</p>
-                    }
-                </div>
-                }
-            </div>
+                    <div class="col-md-2 mb-1">
+                        <label for="digito_verificacion" class="form-label">DÍGITO DE VERIFICACIÓN</label>
+                        <input id="digito_verificacion" type="text" placeholder="Dígito de Verificación"
+                            class="form-control" formControlName="digito_verificacion"
+                            [class.is-invalid]="form.get('digito_verificacion')?.invalid && form.get('digito_verificacion')?.touched"
+                            [class.is-valid]="form.get('digito_verificacion')?.valid">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('digito_verificacion')?.invalid && form.get('digito_verificacion')?.touched) {
+                        <div class="invalid-feedback d-block">
 
-            <div class="col-md-2 mb-1">
-                <label for="telefono">TELÉFONO</label>
-                <input id="telefono" type="text" placeholder="Teléfono" class="form-control"
-                    formControlName="telefono"
-                    [class.is-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched"
-                    [class.is-valid]="form.get('telefono')?.valid">
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
-                <div class="invalid-feedback d-block">
-                    @if(form.get('telefono')?.hasError('required')){
-                    <p class="invalid-feedback d-block">El Teléfono es Obligatorio</p>
-                    }
-                    @if (form.get('telefono')?.hasError('maxlength')) {
-                    <p>El El Teléfono debe tener máximo de 22 Caracteres</p>
-                    }
-                </div>
-                }
-            </div>
+                            @if (form.get('digito_verificacion')?.hasError('maxlength')) {
+                            <p>El Dígito de Verificación debe ser un dígito</p>
+                            }
+                            @if (form.get('digito_verificacion')?.hasError('pattern')) {
+                            <p>El Dígito de Verificación debe contener solo un número</p>
+                            }
+                        </div>
+                        }
+                    </div>
 
-            <div class="col-md-5 mb-1">
-                <label for="direccion">DIRECCIÓN</label>
-                <input id="direccion" type="text" placeholder="Dirección" class="form-control"
-                    formControlName="direccion"
-                    [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
-                    [class.is-valid]="form.get('direccion')?.valid" style="text-transform: uppercase;">
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
-                <div class="invalid-feedback d-block">
-                    @if(form.get('direccion')?.hasError('required')){
-                    <p class="invalid-feedback d-block">La Dirección es Obligatorio</p>
-                    }
-                    @if (form.get('direccion')?.hasError('maxlength')) {
-                    <p>La Dirección debe tener máximo de 200 Caracteres</p>
-                    }
-                </div>
-                }
-            </div>
-            <div class="col-md-4 mb-1">
-                <label for="email">EMAIL</label>
-                <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
-                    [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
-                    [class.is-valid]="form.get('email')?.valid">
-                <div class="valid-feedback">
-                    ¡Parece bien!
-                </div>
-                <!-- Mensaje de error para campo inválido -->
-                @if (form.get('email')?.invalid && form.get('email')?.touched) {
-                <div class="invalid-feedback d-block">
-                    @if(form.get('email')?.hasError('required')){
-                    <p class="invalid-feedback d-block">El Correo es Obligatorio</p>
-                    }
-                    @if (form.get('email')?.hasError('maxlength')) {
-                    <p>EL Correo debe tener máximo de 101 Caracteres</p>
-                    }
-                    @if (form.get('email')?.hasError('email')) {
-                    <p>EL Correo no es válido</p>
-                    }
+                    <div class="col-md-7 mb-1">
+                        <label for="razon_social" class="form-label">RAZÓN SOCIAL</label>
+                        <input id="razon_social" type="text" placeholder="Razón Social" class="form-control"
+                            formControlName="razon_social"
+                            [class.is-invalid]="form.get('razon_social')?.invalid && form.get('razon_social')?.touched"
+                            [class.is-valid]="form.get('razon_social')?.valid" style="text-transform: uppercase;">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
 
-                </div>
-                }
-            </div>
-            </div>
+                    </div>
 
-            <div class="text-end">
-                <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
-                <button class="btn btn-primary ms-2">
-                    @if(reservaEspecial){
-                    Actualizar Reserva Especial
-                    }@else{
-                    Crear Reserva Especial
-                    }
-                </button>
-            </div>
-        </form>
+
+                    <div class="col-md-5 mb-1">
+                        <label for="primer_apellido" class="form-label">PRIMER APELLIDO</label>
+                        <input id="primer_apellido" type="text" placeholder="Primer Apellido" class="form-control"
+                            formControlName="primer_apellido"
+                            [class.is-invalid]="form.get('primer_apellido')?.invalid && form.get('primer_apellido')?.touched"
+                            [class.is-valid]="form.get('primer_apellido')?.valid" style="text-transform: uppercase;">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        <div class="invalid-feedback d-block">@if(form.get('primer_apellido')?.hasError('required') &&
+                            form.get('primer_apellido')?.touched){
+                            <p class="invalid-feedback d-block"> El Primer Nombre es Obligatorio</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 mb-1">
+                        <label for="segundo_apellido" class="form-label">SEGUNDO APELLIDO</label>
+                        <input id="segundo_apellido" type="text" placeholder="Segundo Apellido" class="form-control"
+                            formControlName="segundo_apellido"
+                            [class.is-invalid]="form.get('segundo_apellido')?.invalid && form.get('segundo_apellido')?.touched"
+                            [class.is-valid]="form.get('segundo_apellido')?.valid" style="text-transform: uppercase;">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+
+                    </div>
+
+
+                    <div class="col-md-5 mb-1">
+                        <label for="primer_nombre" class="form-label">PRIMER NOMBRE</label>
+                        <input id="primer_nombre" type="text" placeholder="Primer Nombre" class="form-control"
+                            formControlName="primer_nombre"
+                            [class.is-invalid]="form.get('primer_nombre')?.invalid && form.get('primer_nombre')?.touched"
+                            [class.is-valid]="form.get('primer_nombre')?.valid" style="text-transform: uppercase;">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        <div class="invalid-feedback d-block">@if(form.get('primer_nombre')?.hasError('required') &&
+                            form.get('primer_nombre')?.touched){
+                            <p class="invalid-feedback d-block"> El Primer Nombre es Obligatorio</p>
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-5 mb-1">
+                        <label for="segundo_nombre" class="form-label">SEGUNDO NOMBRE</label>
+                        <input id="segundo_nombre" type="text" placeholder="Segundo Nombre" class="form-control"
+                            formControlName="segundo_nombre"
+                            [class.is-invalid]="form.get('segundo_nombre')?.invalid && form.get('segundo_nombre')?.touched"
+                            [class.is-valid]="form.get('segundo_nombre')?.valid" style="text-transform: uppercase;">
+                        <!-- Mensaje de feedback de éxito -->
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+
+                    </div>
+
+                    <div class="col-md-5 mb-1">
+                        <label for="tarjeta_profecional" class="form-label">Tarjeta Profesional</label>
+                        <input id="tarjeta_profecional" type="text" placeholder="Tarjeta Profesional"
+                            class="form-control" formControlName="tarjeta_profecional"
+                            [class.is-invalid]="form.get('tarjeta_profecional')?.invalid && form.get('tarjeta_profecional')?.touched"
+                            [class.is-valid]="form.get('tarjeta_profecional')?.valid"
+                            style="text-transform: uppercase;">
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        <div class="invalid-feedback d-block">@if(form.get('tarjeta_profecional')?.hasError('maxlength')
+                            &&
+                            form.get('tarjeta_profecional')?.touched){
+                            <p class="invalid-feedback d-block"> Tarjeta Profesional debe tener máximo de 22 Caracteres
+                            </p>
+
+                            }
+                        </div>
+                    </div>
+
+                    <div class="col-md-2 mb-1">
+                        <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
+                        <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
+                            formControlName="codigo_municipio"
+                            [class.is-invalid]="form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched"
+                            [class.is-valid]="form.get('codigo_municipio')?.valid">
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('codigo_municipio')?.hasError('required')){
+                            <p class="invalid-feedback d-block">El Código Municipio es Obligatorio</p>
+                            }
+                            @if (form.get('codigo_municipio')?.hasError('maxlength')) {
+                            <p>El Codigo Municipio debe tener máximo de 5 dígitos</p>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="col-md-2 mb-1">
+                        <label for="telefono">TELÉFONO</label>
+                        <input id="telefono" type="text" placeholder="Teléfono" class="form-control"
+                            formControlName="telefono"
+                            [class.is-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched"
+                            [class.is-valid]="form.get('telefono')?.valid">
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('telefono')?.invalid && form.get('telefono')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('telefono')?.hasError('required')){
+                            <p class="invalid-feedback d-block">El Teléfono es Obligatorio</p>
+                            }
+                            @if (form.get('telefono')?.hasError('maxlength')) {
+                            <p>El El Teléfono debe tener máximo de 22 Caracteres</p>
+                            }
+                        </div>
+                        }
+                    </div>
+
+                    <div class="col-md-5 mb-1">
+                        <label for="direccion">DIRECCIÓN</label>
+                        <input id="direccion" type="text" placeholder="Dirección" class="form-control"
+                            formControlName="direccion"
+                            [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
+                            [class.is-valid]="form.get('direccion')?.valid" style="text-transform: uppercase;">
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('direccion')?.invalid && form.get('direccion')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('direccion')?.hasError('required')){
+                            <p class="invalid-feedback d-block">La Dirección es Obligatorio</p>
+                            }
+                            @if (form.get('direccion')?.hasError('maxlength')) {
+                            <p>La Dirección debe tener máximo de 200 Caracteres</p>
+                            }
+                        </div>
+                        }
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <label for="email">EMAIL</label>
+                        <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
+                            [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
+                            [class.is-valid]="form.get('email')?.valid">
+                        <div class="valid-feedback">
+                            ¡Parece bien!
+                        </div>
+                        <!-- Mensaje de error para campo inválido -->
+                        @if (form.get('email')?.invalid && form.get('email')?.touched) {
+                        <div class="invalid-feedback d-block">
+                            @if(form.get('email')?.hasError('required')){
+                            <p class="invalid-feedback d-block">El Correo es Obligatorio</p>
+                            }
+                            @if (form.get('email')?.hasError('maxlength')) {
+                            <p>EL Correo debe tener máximo de 101 Caracteres</p>
+                            }
+                            @if (form.get('email')?.hasError('email')) {
+                            <p>EL Correo no es válido</p>
+                            }
+
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
+                    <button class="btn btn-primary ms-2">
+                        @if(reservaEspecial){
+                        Actualizar Reserva Especial
+                        }@else{
+                        Crear Reserva Especial
+                        }
+                    </button>
+                </div>
+            </form>
+        </div>
+        }
     </div>
-    }
-</div>
 </div>

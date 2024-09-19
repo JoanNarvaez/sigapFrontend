@@ -17,12 +17,21 @@ export const routes: Routes = [
   { path: 'empresa/:id/editar', 
     loadComponent: ()=> import('./empresa/empresa.component')
   },
+  { path: 'new-empresa',  
+    loadComponent: ()=> import('./empresa/empresa.component')
+  },
   { path: 'representante-legal/:id/editar', 
+    loadComponent: ()=> import('./representante-legal/representante-legal.component')
+  },
+  { path: 'new-representante-legal',  
     loadComponent: ()=> import('./representante-legal/representante-legal.component')
   },
   { path: 'reserva-especial/:id/editar', 
     loadComponent: ()=> import('./reserva-especial/reserva-especial.component')
-  }
+  },
+  { path: 'new-reserva-especial',  
+    loadComponent: ()=> import('./reserva-especial/reserva-especial.component')
+  },
   
   
 ];

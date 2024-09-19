@@ -6,7 +6,7 @@ export interface Afiliado {
     direccion:             string;
     email:                 string;
     tipo_documento:        string;
-    numero_identificacion: number;
+    numero_identificacion: string;
     primer_apellido:       string;
     segundo_apellido:      string;
     primer_nombre:         string;

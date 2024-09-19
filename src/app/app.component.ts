@@ -5,14 +5,12 @@ import { HeaderComponent } from './layout/header/header.component';
 
 import { FormsModule } from '@angular/forms';
 
-
-
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, FormsModule, FooterComponent, HeaderComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'sigap';

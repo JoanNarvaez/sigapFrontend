@@ -2,14 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { AfiliadoService } from '../services/Empresa/afiliado.service';
 import { RouterModule } from '@angular/router';
 import { Afiliado } from '../model/afiliado.interface';
-import {
-  MatDialog,
-  MAT_DIALOG_DATA,
-  MatDialogTitle,
-  MatDialogContent,
-} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import AfiliadoComponent from '../afiliado/afiliado.component';
+import { DownloadService } from '../services/Empresa/download.service';
 
 @Component({
   selector: 'app-lista-afiliados',
@@ -21,6 +17,7 @@ import AfiliadoComponent from '../afiliado/afiliado.component';
 export default class ListaAfiliadosComponent implements OnInit {
   private afiliadosService = inject(AfiliadoService);
   private dialog = inject(MatDialog);
+  constructor(private downloadService: DownloadService) {}
 
   afiliados: Afiliado[] = [];
   pageSize: number = 8;
@@ -31,15 +28,10 @@ export default class ListaAfiliadosComponent implements OnInit {
     this.loadAll();
   }
 
-  // openDialog(id: Afiliado) {
-  //   this.dialog.open(AfiliadoComponent, {
-  //     data: { id },
-  //   });
-  // }
   openDialog(afiliado: Afiliado) {
     this.dialog.open(AfiliadoComponent, {
       data: { afiliado: afiliado },
-      width: '500px'
+      width: '500px',
     });
   }
 
@@ -51,8 +43,10 @@ export default class ListaAfiliadosComponent implements OnInit {
   }
 
   deleteAfiliado(afiliado: Afiliado) {
+    
     this.afiliadosService.delete(afiliado.id).subscribe(() => {
       this.loadAll();
+     
     });
   }
   get paginatedAfiliados() {
@@ -76,5 +70,20 @@ export default class ListaAfiliadosComponent implements OnInit {
     if (page >= 1 && page <= this.totalPages) {
       this.currentPage = page;
     }
+  }
+
+  downloadAllData() {
+    this.downloadService.downloadAllData().subscribe(
+      (data: Blob) => {
+        const blob = new Blob([data], { type: 'text/plain' });
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'all_data.txt';
+        link.click();
+        window.URL.revokeObjectURL(url);
+      },
+      (error) => console.error('Error al descargar el archivo', error)
+    );
   }
 }
