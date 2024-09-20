@@ -8,6 +8,7 @@ import {
 import { ReservaEspecial } from '../model/reservaEspecial';
 import { ReservaEspecialService } from '../services/Empresa/reserva-especial.service';
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-reserva-especial',
@@ -140,7 +141,21 @@ export default class ReservaEspecialComponent implements OnInit {
         .subscribe({
           next: () => {
             this.errors = [];
-            this.router.navigate(['/']);
+            Swal.fire({
+              icon: 'success',
+              title: 'Proceso Exitoso',
+              text: 'Actualizacion realizada de manera exitosa',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown',
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp',
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['/']); // Redirige después de la actualización
+              }
+            });
           },
           error: (response) => {
             this.errors = Array.isArray(response.error)
@@ -152,7 +167,21 @@ export default class ReservaEspecialComponent implements OnInit {
       this.reservaEspecialService.create(reservaEspecialForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']);
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Creacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
         error: (response) => {
           this.errors = Array.isArray(response.error)

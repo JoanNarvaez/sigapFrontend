@@ -5,7 +5,13 @@
         <button class="btn btn-primary" routerLink="/new">Nuevo Contacto</button>
     </div>
 
-
+    <input
+    class="form-control mt-2 mb-2"
+    type="text"
+    [(ngModel)]="searchParam"
+    (input)="search()"
+    placeholder="Search by name"
+  />
     <table class="table table-hover table-striped">
         <thead class="table-dark">
             <tr>
@@ -31,10 +37,11 @@
         </thead>
         <tbody>
 
-            @for (afiliado of paginatedAfiliados; track afiliado.id) {
+            @for (afiliado of paginatedAfiliados; track afiliado.id; 
+            let i = $index) {
 
             <tr>
-
+                <!-- <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td> -->
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.id}}</td>
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.tipo_documento}}</td>
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.numero_identificacion}}</td>
@@ -45,7 +52,8 @@
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.fecha_nacimiento}}</td>
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.genero}}</td>
                 <td (click)="openDialog(afiliado)" style="cursor: pointer;">{{afiliado.codigo_municipio}}</td>
-                <td class="text-end"></td>
+                
+               
                 <!-- <th>{{afiliado.indicador}}</th>
         <th>{{afiliado.telefono}}</th>
         <th>{{afiliado.direccion}}</th>
@@ -68,6 +76,11 @@
             </tr>
 
             }
+            <tr>
+                <td colspan="10" class="text-end"><strong>Total de Afiliados:</strong></td>
+                <td class=""><strong>{{ totalAfiliados }}</strong></td>
+              </tr>
+             
         </tbody>
     </table>
     

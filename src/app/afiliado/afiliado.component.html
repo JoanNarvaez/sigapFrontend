@@ -1,43 +1,89 @@
+<h2 class="display-4 text-center mb-4">Detalles del Afiliado</h2>
 
-<h2 mat-dialog-title>Detalles del Afiliado</h2>
-<mat-dialog-content>
+<div class="container">
   @if (afiliado) {
-    <div>
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>ID:</strong>{{ afiliado.id || 'ID no disponible' }}</p>
-     
-       <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Género:</strong> {{ afiliado.genero || 'Género no disponible' }}</p>
-
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Indicador:</strong> {{ afiliado.indicador || 'Indicador no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Teléfono:</strong> {{ afiliado.telefono || 'Teléfono no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Dirección:</strong> {{ afiliado.direccion || 'Dirección no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Email:</strong> {{ afiliado.email || 'Email no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Tipo de Documento:</strong> {{ afiliado.tipo_documento || 'Tipo de documento no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Número de Identificación:</strong> {{ afiliado.numero_identificacion || 'Número de identificación no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Primer Apellido:</strong> {{ afiliado.primer_apellido || 'Primer apellido no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Segundo Apellido:</strong> {{ afiliado.segundo_apellido || 'Segundo apellido no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Primer Nombre:</strong> {{ afiliado.primer_nombre || 'Primer nombre no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Segundo Nombre:</strong> {{ afiliado.segundo_nombre || 'Segundo nombre no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Nacimiento:</strong> {{ afiliado.fecha_nacimiento | date:'dd/MM/yyyy' || 'Fecha de nacimiento no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Código Municipio:</strong> {{ afiliado.codigo_municipio || 'Código municipio no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Ingreso:</strong> {{ afiliado.fecha_ingreso | date:'dd/MM/yyyy' || 'Fecha de ingreso no disponible' }}</p>
-      
-      <p class="pb-1 mb-5 fst-italic border-bottom"><strong>Fecha de Retiro:</strong> {{ afiliado.fecha_retiro | date:'dd/MM/yyyy' || 'Fecha de retiro no disponible' }}</p>
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white">
+        <h3 class="mb-0">{{ afiliado.primer_nombre }} {{ afiliado.primer_apellido }}</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">ID:</span>
+                <span class="badge bg-secondary rounded-pill">{{ afiliado.id || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Género:</span>
+                <span>{{ afiliado.genero || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Indicador:</span>
+                <span>{{ afiliado.indicador || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Teléfono:</span>
+                <span>{{ afiliado.telefono || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Email:</span>
+                <span>{{ afiliado.email || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Tipo de Documento:</span>
+                <span>{{ afiliado.tipo_documento || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Número de Identificación:</span>
+                <span>{{ afiliado.numero_identificacion || 'No disponible' }}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Dirección:</span>
+                <span>{{ afiliado.direccion || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Segundo Apellido:</span>
+                <span>{{ afiliado.segundo_apellido || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Segundo Nombre:</span>
+                <span>{{ afiliado.segundo_nombre || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Fecha de Nacimiento:</span>
+                <span>{{ afiliado.fecha_nacimiento | date:'dd/MM/yyyy' || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Código Municipio:</span>
+                <span>{{ afiliado.codigo_municipio || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Fecha de Ingreso:</span>
+                <span>{{ afiliado.fecha_ingreso | date:'dd/MM/yyyy' || 'No disponible' }}</span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span class="fw-bold">Fecha de Retiro:</span>
+                <span>{{ afiliado.fecha_retiro | date:'dd/MM/yyyy' || 'No disponible' }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button class="btn btn-primary btn-lg" [routerLink]="['/afiliados', afiliado.id, 'editar']">
+          <i class="bi bi-pencil-square me-2"></i>Editar Afiliado
+        </button>
+      </div>
     </div>
   } @else {
-    <p>No se encontró información del afiliado.</p>
+    <div class="alert alert-warning" role="alert">
+      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+      No se encontró información del afiliado.
+    </div>
   }
-  <button class="btn btn-primary" [routerLink]="['/afiliados', afiliado.id, 'editar']">Editar</button>
- 
-</mat-dialog-content>
+</div>

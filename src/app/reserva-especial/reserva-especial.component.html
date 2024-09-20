@@ -26,7 +26,7 @@
             <form [formGroup]="form" (submit)="save()">
                 <div class="row justify-content text-left">
                     <div class="col-md-2 mb-1">
-                        <label for="tipo_identificacion" class="form-label">TIPO IDENTIFICACIÓN</label>
+                        <label for="tipo_identificacion" class="form-label">TIPO IDENTIFICACIÓN<span class="text-danger"> *</span></label>
                         <select id="tipo_identificacion" class="form-control" formControlName="tipo_identificacion"
                             [class.is-invalid]="form.get('tipo_identificacion')?.invalid && form.get('tipo_identificacion')?.touched"
                             [class.is-valid]="form.get('tipo_identificacion')?.valid">
@@ -50,7 +50,7 @@
 
 
                     <div class="col-md-2 mb-1">
-                        <label for="tipo_persona" class="form-label">TIPO DE PERSONA</label>
+                        <label for="tipo_persona" class="form-label">TIPO DE PERSONA<span class="text-danger"> *</span></label>
                         <select id="tipo_persona" class="form-control" formControlName="tipo_persona"
                             [class.is-invalid]="form.get('tipo_persona')?.invalid && form.get('tipo_persona')?.touched"
                             [class.is-valid]="form.get('tipo_persona')?.valid">
@@ -75,7 +75,7 @@
 
 
                     <div class="col-md-3 mb-1">
-                        <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN</label>
+                        <label for="numero_identificacion" class="form-label">NÚMERO IDENTIFICACIÓN<span class="text-danger"> *</span></label>
                         <input id="numero_identificacion" type="text" placeholder="Número Identificación"
                             class="form-control" formControlName="numero_identificacion"
                             [class.is-invalid]="form.get('numero_identificacion')?.invalid && form.get('numero_identificacion')?.touched"
@@ -140,7 +140,7 @@
 
 
                     <div class="col-md-5 mb-1">
-                        <label for="primer_apellido" class="form-label">PRIMER APELLIDO</label>
+                        <label for="primer_apellido" class="form-label">PRIMER APELLIDO<span class="text-danger"> *</span></label>
                         <input id="primer_apellido" type="text" placeholder="Primer Apellido" class="form-control"
                             formControlName="primer_apellido"
                             [class.is-invalid]="form.get('primer_apellido')?.invalid && form.get('primer_apellido')?.touched"
@@ -173,7 +173,7 @@
 
 
                     <div class="col-md-5 mb-1">
-                        <label for="primer_nombre" class="form-label">PRIMER NOMBRE</label>
+                        <label for="primer_nombre" class="form-label">PRIMER NOMBRE<span class="text-danger"> *</span></label>
                         <input id="primer_nombre" type="text" placeholder="Primer Nombre" class="form-control"
                             formControlName="primer_nombre"
                             [class.is-invalid]="form.get('primer_nombre')?.invalid && form.get('primer_nombre')?.touched"
@@ -226,7 +226,7 @@
                     </div>
 
                     <div class="col-md-2 mb-1">
-                        <label for="codigo_municipio">CÓDIGO MUNICIPIO</label>
+                        <label for="codigo_municipio">CÓDIGO MUNICIPIO<span class="text-danger"> *</span></label>
                         <input id="codigo_municipio" type="text" placeholder="Código Municipio" class="form-control"
                             formControlName="codigo_municipio"
                             [class.is-invalid]="form.get('codigo_municipio')?.invalid && form.get('codigo_municipio')?.touched"
@@ -248,7 +248,7 @@
                     </div>
 
                     <div class="col-md-2 mb-1">
-                        <label for="telefono">TELÉFONO</label>
+                        <label for="telefono">TELÉFONO<span class="text-danger"> *</span></label>
                         <input id="telefono" type="text" placeholder="Teléfono" class="form-control"
                             formControlName="telefono"
                             [class.is-invalid]="form.get('telefono')?.invalid && form.get('telefono')?.touched"
@@ -270,7 +270,7 @@
                     </div>
 
                     <div class="col-md-5 mb-1">
-                        <label for="direccion">DIRECCIÓN</label>
+                        <label for="direccion">DIRECCIÓN<span class="text-danger"> *</span></label>
                         <input id="direccion" type="text" placeholder="Dirección" class="form-control"
                             formControlName="direccion"
                             [class.is-invalid]="form.get('direccion')?.invalid && form.get('direccion')?.touched"
@@ -291,7 +291,7 @@
                         }
                     </div>
                     <div class="col-md-4 mb-1">
-                        <label for="email">EMAIL</label>
+                        <label for="email">EMAIL<span class="text-danger"> *</span></label>
                         <input id="email" type="text" placeholder="Email" class="form-control" formControlName="email"
                             [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched"
                             [class.is-valid]="form.get('email')?.valid">
@@ -318,7 +318,7 @@
 
                 <div class="text-end">
                     <button type="button" class="btn btn-light" routerLink="/">Cancelar</button>
-                    <button class="btn btn-primary ms-2">
+                    <button type="submit" [disabled]="form.invalid" class="btn btn-primary ms-2">
                         @if(reservaEspecial){
                         Actualizar Reserva Especial
                         }@else{

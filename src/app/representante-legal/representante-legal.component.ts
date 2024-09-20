@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { RepresentanteLegalService } from '../services/Empresa/representante-legal.service';
 import { RepresentanteLegal } from '../model/representanteLegal';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-representante-legal',
@@ -132,7 +133,21 @@ export default class RepresentanteLegalComponent implements OnInit {
         .subscribe({
           next: () => {
             this.errors = [];
-            this.router.navigate(['/']);
+            Swal.fire({
+              icon: 'success',
+              title: 'Proceso Exitoso',
+              text: 'Actualizacion realizada de manera exitosa',
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown',
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp',
+              },
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['/']); // Redirige después de la actualización
+              }
+            });
           },
           error: (response) => {
             console.error('Error al actualizar:', response.error);
@@ -145,7 +160,21 @@ export default class RepresentanteLegalComponent implements OnInit {
       this.representanteLegalService.create(representantelegalForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']);
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Creacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
         error: (response) => {
           console.error('Error al crear:', response.error);

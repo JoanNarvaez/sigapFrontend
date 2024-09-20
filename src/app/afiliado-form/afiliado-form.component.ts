@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { AfiliadoService } from '../services/Empresa/afiliado.service';
 import { Afiliado } from '../model/afiliado.interface';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 export function birthDateValidator(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
@@ -161,7 +162,21 @@ export default class AfiliadoFormComponent implements OnInit {
       this.afiliadoService.update(this.afiliado.id, afiliadoForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']); // Redirige después de la actualización
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Actualizacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
         error: (response) => {
           console.error('Error al actualizar:', response.error);
@@ -175,9 +190,23 @@ export default class AfiliadoFormComponent implements OnInit {
       this.afiliadoService.create(afiliadoForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']); // Redirige después de la creación
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Creacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
-        error: (response) => {
+          error: (response) => {
           console.error('Error al crear:', response.error);
           this.errors = Array.isArray(response.error)
             ? response.error

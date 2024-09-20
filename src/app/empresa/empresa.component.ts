@@ -9,6 +9,7 @@ import { EmpresaService } from '../services/Empresa/empresa.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Empresa } from '../model/empresa.interface';
 import { HttpErrorResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-empresa',
@@ -250,7 +251,21 @@ export default class EmpresaComponent implements OnInit {
       this.empresaService.update(this.empresa.id, empresaForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']); // Redirige después de la actualización
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Actualizacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
         error: (response) => {
           console.error('Error al actualizar:', response.error);
@@ -264,7 +279,21 @@ export default class EmpresaComponent implements OnInit {
       this.empresaService.create(empresaForm).subscribe({
         next: () => {
           this.errors = [];
-          this.router.navigate(['/']); // Redirige después de la creación
+          Swal.fire({
+            icon: 'success',
+            title: 'Proceso Exitoso',
+            text: 'Creacion realizada de manera exitosa',
+            showClass: {
+              popup: 'animate__animated animate__fadeInDown',
+            },
+            hideClass: {
+              popup: 'animate__animated animate__fadeOutUp',
+            },
+          }).then((result) => {
+            if (result.isConfirmed) {
+              this.router.navigate(['/']); // Redirige después de la actualización
+            }
+          });
         },
         error: (response) => {
           console.error('Error al crear:', response.error);
