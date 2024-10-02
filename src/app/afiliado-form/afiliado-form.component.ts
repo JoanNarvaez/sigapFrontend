@@ -81,7 +81,7 @@ export default class AfiliadoFormComponent implements OnInit {
           ],
           primer_apellido: [
             afiliado.primer_apellido,
-            [Validators.required, Validators.maxLength(60)],
+            [Validators.required, Validators.maxLength(60),Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$')],
           ],
           segundo_apellido: [afiliado.segundo_apellido], // No se requiere validator
           primer_nombre: [

@@ -127,7 +127,7 @@ export default class ListaAfiliadosComponent implements OnInit {
         const url = window.URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = 'all_data.txt';
+        link.download = 'ACO245RACOAAAMMDDNI999999999999.txt';
         link.click();
         window.URL.revokeObjectURL(url);
       },
@@ -144,7 +144,9 @@ export default class ListaAfiliadosComponent implements OnInit {
             .toLocaleLowerCase()
             .includes(lowerCaseSearch) ||
           afiliado.primer_apellido.toLocaleLowerCase().includes(lowerCaseSearch)||
-          afiliado.segundo_apellido.toLocaleLowerCase().includes(lowerCaseSearch)
+          afiliado.segundo_apellido.toLocaleLowerCase().includes(lowerCaseSearch)||
+          afiliado.primer_nombre.toLocaleLowerCase().includes(lowerCaseSearch)||
+          afiliado.segundo_nombre.toLocaleLowerCase().includes(lowerCaseSearch)
         );
       });
 

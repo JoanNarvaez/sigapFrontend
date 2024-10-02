@@ -1,0 +1,13 @@
+.clickable {
+    cursor: pointer;
+}
+
+/* Opcional: quitar el subrayado de los enlaces */
+.page-link {
+    text-decoration: none;
+}
+
+/* Opcional: cambiar el color del texto al pasar el mouse */
+.page-link:hover {
+    color: #0056b3;
+}
